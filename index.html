@@ -156,12 +156,17 @@ main{padding:18px 18px 40px;max-width:1200px;margin:auto}
     <div class="col" style="gap:6px"><div class="lb">URL Endpoint ImageKit (opsional)</div><input id="siku" class="i" placeholder="https://ik.imagekit.io/usernameAnda (kosongkan = default)"></div>
     <div id="ikinfo" class="s m" style="margin-top:4px"></div>
    </div>
+   <div class="c col own"><b>Slug — Link pendek menu (opsional)</b>
+    <p class="s m">Buat <b>nama pendek unik</b> untuk restoran Anda (mis. <code>berkah</code>). Pelanggan bisa ketik langsung di Google/browser: <code>...menu-resto/go#berkah1</code> (slug + nomor meja). Lebih mudah diingat dari pada link panjang.</p>
+    <div class="col" style="gap:6px"><div class="lb">Slug (3-20 huruf/angka kecil)</div><input id="ssl" class="i" placeholder="mis. berkah" autocapitalize="off" spellcheck="false" oninput="this.value=this.value.toLowerCase().replace(/[^a-z0-9]/g,'')"></div>
+    <div id="sluginfo" class="s m" style="margin-top:4px"></div>
+   </div>
    <div class="c col"><b>Tampilan</b><div class="r w"><button class="g" onclick="dark()">Terang / Gelap</button></div></div>
    <div class="c col own"><b>Akun kasir</b><div class="rknote s m" style="display:flex;gap:8px"><span>i</span><span>Kasir masuk dengan No. WA mereka untuk menerima &amp; memproses pesanan.</span></div><div class="r w"><input id="tu" class="i f" inputmode="tel" placeholder="No. WA kasir" autocomplete="off"><input id="tp" type="password" class="i f" placeholder="Sandi awal (min 6)"><button class="b" onclick="addU()">Tambah</button></div><div id="ul" class="col"></div></div>
    <div class="c col"><b>Ganti sandi</b><div class="r w"><input id="c0" type="password" class="i f" placeholder="Sandi lama"><input id="c1" type="password" class="i f" placeholder="Sandi baru"><button class="b" onclick="chPass()">Ganti</button></div></div>
    <button class="b" style="padding:14px;background:var(--er)" onclick="out()">Keluar</button>
    <div style="height:20px"></div>
-   <div class="c col"><b>Tautan menu publik</b><p class="s m">Bagikan tautan ini atau cetak QR Code per meja di menu Meja.</p><div class="r w"><input id="pul" class="i f" readonly><button class="g" onclick="cpPub()">Salin</button><button class="g" onclick="openPub()">Buka</button></div></div>
+   <div class="c col"><b>Tautan menu publik</b><p class="s m" id="pul-desc">Bagikan tautan ini atau cetak QR Code per meja di menu Meja.</p><div class="r w"><input id="pul" class="i f" readonly><button class="g" onclick="cpPub()">Salin</button><button class="g" onclick="openPub()">Buka</button></div></div>
   </section>
  </main>
  <button id="fab" class="b" onclick="go('pesanan')"><svg class="ic" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg><span id="fn">0 pesanan baru</span></button>
@@ -483,7 +488,18 @@ function pubURL(meja) {
   let base = location.href.split('?')[0].split('#')[0];
   base = base.replace(/\/index\.html.*$/i, '/');
   if (!base.endsWith('/')) base += '/';
+  const s = st();
+  // Jika owner set slug, gunakan link pendek: go.html#slug + nomor meja
+  // Format: https://...github.io/menu-resto/go#berkah1
+  // Pelanggan bisa ketik ini di Google/browser, lebih mudah diingat.
+  if (s.slug && meja > 0) return `${base}go.html#${s.slug}${meja}`;
   return `${base}menu.html?t=${D().pub}&m=${meja}`;
+}
+// URL teks untuk ditampilkan di bawah QR Code (pendek & mudah diketik)
+function pubURLText(meja) {
+  const u = pubURL(meja);
+  // Hanya tampilkan bagian setelah domain utama + path repo
+  return u.replace(/^https?:\/\//, '');
 }
 // Library: qrcodejs (browser-ready, expose global QRCode)
 // API: new QRCode(element, { text, width, height, colorDark, colorLight, correctLevel })
@@ -561,7 +577,8 @@ function qrPr() {
   if (!S.curMeja) return;
   const url = qrDataUrl(); if (!url) return toast('QR belum siap, tunggu sebentar', 1);
   const w = window.open('', '_blank');
-  w.document.write(`<title>QR Meja ${S.curMeja} - ${E(D().toko)}</title><style>@page{margin:8mm}body{font-family:Arial,sans-serif;text-align:center;padding:14px}h1{font-size:22px;color:#1a1a1a;margin-bottom:4px}p.sub{color:#666;font-size:13px;margin-bottom:14px}img{width:240px;height:240px;border:1px solid #eee;border-radius:8px}p.note{margin-top:14px;font-size:12px;color:#888}</style><h1>${E(D().toko)}</h1><p class="sub">Meja ${S.curMeja}</p><img src="${url}"><p class="note">Pindai QR ini dengan kamera HP untuk melihat menu &amp; memesan langsung</p>`);
+  const urlText = pubURLText(S.curMeja);
+  w.document.write(`<!DOCTYPE html><html><head><title>QR Meja ${S.curMeja} - ${E(D().toko)}</title><style>@page{margin:8mm}body{font-family:Georgia,'Times New Roman',serif;text-align:center;padding:18px;background:#fff}h1{font-size:24px;color:#1f3a2e;margin-bottom:4px}p.sub{color:#c9a55c;font-size:14px;margin-bottom:14px;font-style:italic;font-family:Arial,sans-serif}.qr{display:inline-block;padding:14px;border:2px solid #c9a55c;border-radius:14px;background:#fff}img{width:260px;height:260px;display:block}.urltext{margin-top:14px;font-family:'Courier New',monospace;font-size:13px;color:#1f3a2e;background:#faf6ef;padding:10px 16px;border-radius:8px;display:inline-block;border:1px solid #e8dfcc;letter-spacing:.02em}p.note{margin-top:14px;font-size:12px;color:#888;font-family:Arial,sans-serif}.deco{width:60px;height:2px;background:linear-gradient(to right,transparent,#c9a55c,transparent);margin:12px auto}</style></head><body><h1>${E(D().toko)}</h1><p class="sub">Meja ${S.curMeja}</p><div class="deco"></div><div class="qr"><img src="${url}"></div><div class="urltext">${E(urlText)}</div><p class="note">Pindai QR dengan kamera HP, atau ketik link di atas di browser</p></body></html>`);
   w.document.close(); setTimeout(() => { w.focus(); w.print(); }, 400);
 }
 function qrAll() {
@@ -578,11 +595,12 @@ function qrAll() {
 function qrPrint() {
   const J = (D().meja || []).sort((a, b) => a.nomor - b.nomor); if (!J.length) return toast('Belum ada meja', 1);
   const w = window.open('', '_blank');
-  let html = `<!DOCTYPE html><html><head><title>QR Semua Meja - ${E(D().toko)}</title><style>@page{size:A4;margin:10mm}body{font-family:Arial,sans-serif;background:#fff;margin:0;padding:14px}.hdr{text-align:center;margin-bottom:14px;border-bottom:2px solid #0a8d6b;padding-bottom:10px}.hdr h1{font-size:20px;color:#0a8d6b;margin:0}.hdr p{font-size:12px;color:#666;margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.item{border:1.5px solid #eee;border-radius:12px;padding:12px;text-align:center;background:#fff}.item h2{font-size:16px;margin:0 0 4px;color:#1a1a1a}.item .lbl{font-size:11px;color:#888;margin-bottom:6px}.item img{width:140px;height:140px;display:block;margin:0 auto}.item .note{font-size:10px;color:#aaa;margin-top:6px}@media print{.item{break-inside:avoid}}</style></head><body>`;
+  let html = `<!DOCTYPE html><html><head><title>QR Semua Meja - ${E(D().toko)}</title><style>@page{size:A4;margin:10mm}body{font-family:Arial,sans-serif;background:#fff;margin:0;padding:14px}.hdr{text-align:center;margin-bottom:14px;border-bottom:2px solid #c9a55c;padding-bottom:12px}.hdr h1{font-family:Georgia,serif;font-size:22px;color:#1f3a2e;margin:0}.hdr p{font-size:12px;color:#c9a55c;margin:4px 0 0;font-style:italic}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.item{border:1.5px solid #e8dfcc;border-radius:12px;padding:12px;text-align:center;background:#fff}.item h2{font-family:Georgia,serif;font-size:16px;margin:0 0 4px;color:#1f3a2e}.item .lbl{font-size:11px;color:#888;margin-bottom:6px}.item img{width:140px;height:140px;display:block;margin:0 auto;border:1px solid #f0e6d2;border-radius:8px}.item .urltext{font-family:'Courier New',monospace;font-size:9px;color:#1f3a2e;background:#faf6ef;padding:4px 6px;border-radius:4px;margin-top:6px;word-break:break-all;letter-spacing:0}.item .note{font-size:10px;color:#aaa;margin-top:4px}@media print{.item{break-inside:avoid}}</style></head><body>`;
   html += `<div class="hdr"><h1>${E(D().toko)}</h1><p>QR Code Menu Digital - ${J.length} meja</p></div><div class="grid">`;
   J.forEach(j => {
     const url = makeQRDataUrl(pubURL(j.nomor), 140);
-    html += `<div class="item"><h2>Meja ${j.nomor}</h2>${j.label ? '<div class="lbl">' + E(j.label) + '</div>' : ''}<img src="${url}"><div class="note">Pindai untuk memesan</div></div>`;
+    const ut = pubURLText(j.nomor);
+    html += `<div class="item"><h2>Meja ${j.nomor}</h2>${j.label ? '<div class="lbl">' + E(j.label) + '</div>' : ''}<img src="${url}"><div class="urltext">${E(ut)}</div><div class="note">Pindai atau ketik link</div></div>`;
   });
   html += '</div></body></html>';
   w.document.write(html); w.document.close();
@@ -620,20 +638,33 @@ function rSet() {
   $('swb').value = s.wbuka || ''; $('swt').value = s.wtutup || ''; $('sf').value = s.footer || '';
   $('sp').value = s.pajak || 0; $('ss').value = s.service || 0;
   $('sik').value = s.imagekit_key || ''; $('siku').value = s.imagekit_url || '';
-  ikInfo();
+  $('ssl').value = s.slug || '';
+  ikInfo(); slugInfo();
 }
 function ikInfo() {
   const key = $('sik').value.trim();
   $('ikinfo').innerHTML = key ? '<b style="color:var(--ok)">Aktif:</b> foto menu akan disimpan di akun ImageKit Anda sendiri.' : '<b style="color:var(--wa)">Default:</b> foto menu memakai key default dari backend.';
 }
+function slugInfo() {
+  const slug = ($('ssl').value || '').trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (!slug) {
+    $('sluginfo').innerHTML = '<b style="color:var(--m2)">Tidak aktif:</b> QR Code memakai link panjang. Isi slug untuk mengaktifkan link pendek.';
+    $('pul-desc').textContent = 'Bagikan tautan ini atau cetak QR Code per meja di menu Meja.';
+    return;
+  }
+  const sample = pubURLText(1);
+  $('sluginfo').innerHTML = `<b style="color:var(--ok)">Aktif:</b> Link pendek = <code>${E(sample)}</code> (contoh meja 1). Pelanggan bisa ketik ini di Google.`;
+  $('pul-desc').innerHTML = `Contoh link pendek: <code>${E(sample)}</code> · Bagikan atau cetak QR di menu Meja.`;
+}
 $('sik').addEventListener('input', ikInfo);
+$('ssl').addEventListener('input', slugInfo);
 function saveSet() {
-  const s = { nama: $('sn').value, telp: $('st').value, alamat: $('sa').value, wbuka: $('swb').value, wtutup: $('swt').value, footer: $('sf').value, pajak: +$('sp').value || 0, service: +$('ss').value || 0, imagekit_key: $('sik').value.trim(), imagekit_url: $('siku').value.trim() };
+  const s = { nama: $('sn').value, telp: $('st').value, alamat: $('sa').value, wbuka: $('swb').value, wtutup: $('swt').value, footer: $('sf').value, pajak: +$('sp').value || 0, service: +$('ss').value || 0, imagekit_key: $('sik').value.trim(), imagekit_url: $('siku').value.trim(), slug: $('ssl').value.trim().toLowerCase().replace(/[^a-z0-9]/g, '') };
   S.sd = 0; D().setting = Object.assign({}, st(), s); $('tt').textContent = s.nama || D().toko;
   push({ a: 'su', s }); toast('Pengaturan disimpan'); all();
 }
-$('v-set').addEventListener('input', e => { if (['sn','st','sa','swb','swt','sf','sp','ss','sik','siku'].includes(e.target.id)) S.sd = 1; });
-$('v-set').addEventListener('change', e => { if (['sn','st','sa','swb','swt','sf','sp','ss','sik','siku'].includes(e.target.id)) saveSet(); });
+$('v-set').addEventListener('input', e => { if (['sn','st','sa','swb','swt','sf','sp','ss','sik','siku','ssl'].includes(e.target.id)) S.sd = 1; });
+$('v-set').addEventListener('change', e => { if (['sn','st','sa','swb','swt','sf','sp','ss','sik','siku','ssl'].includes(e.target.id)) saveSet(); });
 function cpPub() { $('pul').select(); document.execCommand('copy'); toast('Tautan disalin'); }
 function openPub() { open(pubURL(0).replace('&m=0',''), '_blank'); }
 
