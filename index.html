@@ -479,8 +479,10 @@ function rMeja() {
   J.forEach(j => renderQR($('qrmini-' + j.nomor), pubURL(j.nomor), 120));
 }
 function pubURL(meja) {
-  const base = location.href.replace(/index\.html.*$/i, 'menu.html');
-  return `${base}?t=${D().pub}&m=${meja}`;
+  let base = location.href.split('?')[0].split('#')[0];
+  base = base.replace(/\/index\.html.*$/i, '/');
+  if (!base.endsWith('/')) base += '/';
+  return `${base}menu.html?t=${D().pub}&m=${meja}`;
 }
 function renderQR(el, text, size) {
   if (!el || !window.QRCode) return;
