@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Pelanggan — Cara Pindai QR Menu</title>
+<style>
+@page { size: A4; margin: 8mm }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f0e8; color: #1a1a1a; padding: 20px; line-height: 1.5 }
+.card { max-width: 800px; margin: 0 auto; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08) }
+.hero { background: linear-gradient(135deg, #1f3a2e, #2d5440); color: #fff; padding: 32px 24px; text-align: center; position: relative }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(232,93,44,.2), transparent 50%); pointer-events: none }
+.hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; letter-spacing: -.01em }
+.hero p { font-size: 14px; opacity: .9 }
+.hero .logo { width: 56px; height: 56px; background: #fff; color: #1f3a2e; border-radius: 14px; display: inline-grid; place-items: center; font-size: 28px; font-weight: 800; margin-bottom: 12px; font-family: Georgia, serif }
+.body { padding: 28px 24px }
+.intro { text-align: center; font-size: 15px; color: #555; margin-bottom: 24px; line-height: 1.6 }
+.intro b { color: #1f3a2e }
+.steps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px }
+@media (max-width: 600px) { .steps { grid-template-columns: 1fr } }
+.step { background: #faf7f2; border: 1.5px solid #eee6dc; border-radius: 14px; padding: 18px; position: relative; padding-left: 56px }
+.step .num { position: absolute; top: 16px; left: 14px; width: 32px; height: 32px; background: #e85d2c; color: #fff; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 16px }
+.step h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #1f3a2e }
+.step p { font-size: 13px; color: #555; line-height: 1.5 }
+.step .ico { font-size: 22px; display: block; margin-bottom: 6px }
+.platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px }
+@media (max-width: 600px) { .platforms { grid-template-columns: 1fr } }
+.platform { background: #fff; border: 1.5px solid #eee6dc; border-radius: 14px; padding: 16px }
+.platform h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; color: #1f3a2e }
+.platform h4 .pico { font-size: 18px }
+.platform ol { padding-left: 18px; font-size: 13px; color: #555; line-height: 1.6 }
+.platform ol li { margin-bottom: 4px }
+.tips { background: #fff2ec; border-left: 4px solid #e85d2c; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px }
+.tips h4 { font-size: 14px; font-weight: 700; color: #c44a1a; margin-bottom: 6px; display: flex; align-items: center; gap: 6px }
+.tips ul { padding-left: 18px; font-size: 13px; color: #7a3a1a; line-height: 1.6 }
+.footer { background: #faf7f2; padding: 16px 24px; text-align: center; font-size: 12px; color: #888; border-top: 1px solid #eee6dc }
+.footer b { color: #1f3a2e }
+.cta { text-align: center; margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #e85d2c, #d44a1a); color: #fff; border-radius: 14px }
+.cta b { font-size: 16px }
+.cta p { font-size: 13px; opacity: .9; margin-top: 4px }
+.btn-print { display: inline-block; margin: 16px auto 0; padding: 12px 24px; background: #1f3a2e; color: #fff; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px }
+.btn-print:hover { background: #2d5440 }
+.center { text-align: center }
+@media print { body { background: #fff; padding: 0 } .btn-print { display: none } .card { box-shadow: none; max-width: 100% } }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="hero">
+    <div class="logo">M</div>
+    <h1>Panduan Pesan Menu Digital</h1>
+    <p>Pindai QR Code di meja — pesan langsung dari HP Anda, tanpa aplikasi tambahan</p>
+  </div>
+  <div class="body">
+    <p class="intro">Selamat datang! Untuk memesan makanan &amp; minuman, cukup <b>pindai QR Code</b> yang ada di meja Anda dengan kamera HP. Tidak perlu download aplikasi apa pun. Ikuti 4 langkah mudah berikut:</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <span class="ico">📷</span>
+        <h3>Buka Kamera HP</h3>
+        <p>Buka aplikasi <b>Kamera</b> bawaan HP Anda (tidak perlu aplikasi QR scanner lain).</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <span class="ico">🎯</span>
+        <h3>Arahkan ke QR Code</h3>
+        <p>Arahkan kamera ke <b>QR Code</b> yang terpasang di meja. Pastikan QR terlihat jelas di layar.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <span class="ico">👆</span>
+        <h3>Ketuk Notifikasi</h3>
+        <p>Notifikasi/link akan muncul di bagian atas layar. <b>Ketuk link tersebut</b> untuk membuka menu.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <span class="ico">🍽</span>
+        <h3>Pilih &amp; Kirim Pesanan</h3>
+        <p>Pilih makanan/minuman, klik <b>+ Tambah</b>, lalu <b>Kirim pesanan</b>. Dapur langsung menerima!</p>
+      </div>
+    </div>
+
+    <div class="platforms">
+      <div class="platform">
+        <h4><span class="pico">🤖</span> Android (Chrome/Kamera)</h4>
+        <ol>
+          <li>Buka aplikasi <b>Kamera</b> atau <b>Google Lens</b></li>
+          <li>Arahkan ke QR Code di meja</li>
+          <li>Muncul link biru/kuning di bawah → <b>ketuk</b></li>
+          <li>Menu terbuka di browser → pilih menu → <b>Kirim pesanan</b></li>
+        </ol>
+      </div>
+      <div class="platform">
+        <h4><span class="pico">🍎</span> iPhone (Safari/Kamera)</h4>
+        <ol>
+          <li>Buka aplikasi <b>Kamera</b> bawaan iPhone</li>
+          <li>Arahkan ke QR Code — pastikan pass mode <b>Foto</b></li>
+          <li>Muncul notifikasi kuning di atas → <b>ketuk</b></li>
+          <li>Safari terbuka dengan menu → pilih → <b>Kirim pesanan</b></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h4>💡 Tips &amp; Troubleshooting</h4>
+      <ul>
+        <li><b>QR tidak terbaca?</b> Pastikan pencahayaan cukup, jangan ada pantulan cahaya di QR, dan jarak kamera 10-15 cm dari QR.</li>
+        <li><b>Tidak muncul notifikasi?</b> Gunakan aplikasi <b>Google Lens</b> (Android) atau aplikasi <b>QR Scanner</b> gratis dari App Store.</li>
+        <li><b>Menu tidak tampil?</b> Pastikan internet HP aktif (WiFi/kuota). Menu butuh koneksi internet untuk dimuat.</li>
+        <li><b>Sudah pesan tapi mau tambah lagi?</b> Buka link menu lagi (scan QR sekali lagi) → tambah item → kirim pesanan baru.</li>
+        <li><b>Mau lihat status pesanan?</b> Setelah kirim, halaman akan menampilkan status: <b>Baru → Diproses → Siap</b>.</li>
+        <li><b>Pembayaran?</b> Bayar di kasir (tunai/QRIS/transfer) setelah selesai makan. Tidak ada pembayaran online di HP.</li>
+      </ul>
+    </div>
+
+    <div class="cta">
+      <b>📞 Butuh bantuan?</b>
+      <p>Panggil pelayan/kasir. Mereka siap membantu Anda memesan secara manual juga.</p>
+    </div>
+
+    <div class="center">
+      <button class="btn-print" onclick="window.print()">🖨 Cetak Panduan Ini</button>
+    </div>
+  </div>
+  <div class="footer">
+    Panduan Menu Digital — <b>MenuKu</b> · Cetak dan pajang di meja restoran Anda
+  </div>
+</div>
+</body>
+</html>
