@@ -2,670 +2,502 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MenuKu — Dashboard Menu Digital QR Code</title>
-<meta name="description" content="MenuKu — aplikasi menu digital QR Code untuk restoran, kafe, warung. Kelola menu + foto, meja + QR, pesanan real-time dari HP pelanggan.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>MenuKu — Menu Digital</title>
 <meta name="theme-color" content="#0a8d6b">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" href="icon-192.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
-:root{--bg:#f2f6fa;--c:#fff;--l:#e3e9f0;--t:#112032;--m:#687787;--p:#0a8d6b;--pt:#e6f6ef;--or:#ff5e1f;--ok:#0f9d6b;--er:#d93b3b;--wa:#e8780a;--sh:0 2px 8px rgba(17,32,50,.06);--sh2:0 8px 24px rgba(17,32,50,.12)}
-[data-d]{--bg:#0b1118;--c:#131c26;--l:#243242;--t:#eaf1f8;--m:#8b9bab;--p:#2bb673;--pt:#14263a;--or:#ff7a45;--sh:0 2px 8px rgba(0,0,0,.3);--sh2:0 8px 24px rgba(0,0,0,.5)}
-*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
-body{font:15px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased}
-input,select,textarea,button{font:inherit;color:inherit}[hidden]{display:none!important}
-.c{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:16px;box-shadow:var(--sh)}
-.i{width:100%;background:var(--c);border:1.5px solid var(--l);border-radius:12px;padding:12px 14px;font-size:16px;min-width:0;transition:.15s}
-.i:focus{outline:0;border-color:var(--p);box-shadow:0 0 0 3px color-mix(in srgb,var(--p) 18%,transparent)}
-.b{background:var(--p);color:#fff;border:0;border-radius:12px;padding:12px 20px;font-weight:600;cursor:pointer;transition:.1s}
-.b.o{background:var(--or);box-shadow:0 4px 12px color-mix(in srgb,var(--or) 35%,transparent)}
-.b:active{transform:scale(.98)}
-.g{background:var(--c);border:1.5px solid var(--l);border-radius:10px;padding:7px 12px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;color:var(--p)}.g:hover{border-color:var(--p);background:var(--pt)}
-.r{display:flex;gap:8px;align-items:center}.w{flex-wrap:wrap}.f{flex:1;min-width:0}.jb{justify-content:space-between}
-.col{display:flex;flex-direction:column;gap:12px}.m{color:var(--m)}.s{font-size:12px}.k{font-weight:600}
-.lb{font-size:11px;font-weight:700;color:var(--m);letter-spacing:.06em;text-transform:uppercase;margin-bottom:-6px}
-header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#0a8d6b,#076b50);color:#fff;padding:max(12px,env(safe-area-inset-top)) 18px 12px;display:flex;gap:12px;align-items:center;box-shadow:0 2px 12px rgba(10,141,107,.25)}
-[data-d] header{background:linear-gradient(135deg,#0d3d2b,#0a2a1f)}
-.lg{width:40px;height:40px;background:#fff;color:#0a8d6b;border-radius:12px;display:grid;place-items:center;font-size:20px;font-weight:800;flex:none}
-#hd{flex:none;min-width:0}#tt{font-size:17px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#uu{font-size:11px;opacity:.85}
-#nav{display:flex;gap:4px;flex:1;overflow-x:auto;margin-left:10px}
-#nav button{border:0;background:0;color:rgba(255,255,255,.75);padding:8px 14px;font-weight:600;cursor:pointer;white-space:nowrap;border-radius:99px}
-#nav button.on{color:#0a8d6b;background:#fff}#nav .ic{display:none}
-.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.bl{position:relative;border:0;background:rgba(255,255,255,.18);color:#fff;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;cursor:pointer;flex:none}
-#bc{position:absolute;top:-4px;right:-4px;background:var(--or);color:#fff;border-radius:99px;font-size:10px;font-weight:800;padding:1px 6px;font-style:normal}
-#dot{width:10px;height:10px;border-radius:50%;background:#4ade80;flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.25)}#dot.x{background:#fbbf24;animation:p 1s infinite}@keyframes p{50%{opacity:.3}}
-#sb{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#fff4e5;color:#8a4b00;border-bottom:1px solid #ffd9a8;font-size:12px;font-weight:500;padding:9px 18px;flex-wrap:wrap}
-main{padding:18px 18px 40px;max-width:1200px;margin:auto}
-.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.kpi b{display:block;font-size:21px;font-weight:800}.kpi .c{border-left:4px solid var(--p)}
-.kpi .c:nth-child(2){border-left-color:var(--wa)}.kpi .c:nth-child(3){border-left-color:var(--ok)}.kpi .c:nth-child(4){border-left-color:var(--or)}
-.mc{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.mcard{background:var(--c);border:1.5px solid var(--l);border-radius:16px;overflow:hidden;box-shadow:var(--sh);transition:.15s;position:relative}
-.mcard:hover{border-color:var(--p);transform:translateY(-2px)}
-.mcard .ph{width:100%;aspect-ratio:4/3;background:var(--pt);display:grid;place-items:center;font-size:36px;color:var(--p);overflow:hidden}
-.mcard .ph img{width:100%;height:100%;object-fit:cover}
-.mcard .bd{padding:12px}
-.mcard .nm{font-weight:700;font-size:15px;line-height:1.3;margin-bottom:2px}
-.mcard .ds{font-size:11px;color:var(--m);line-height:1.35;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em}
-.mcard .pr{font-weight:800;color:var(--or);font-size:16px}
-.mcard .st{position:absolute;top:8px;left:8px;border-radius:99px;padding:3px 9px;font-size:10px;font-weight:700;background:rgba(255,255,255,.92)}
-.mcard .st.x{background:#fde8e8;color:var(--er)}
-.oc{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:14px;box-shadow:var(--sh);margin-bottom:10px}
-.oc.new{border-left:4px solid var(--or);background:color-mix(in srgb,#fff4e5 60%,var(--c))}
-.oc.proc{border-left:4px solid var(--wa)}
-.oc.done{border-left:4px solid var(--ok);opacity:.85}
-.oc.cancel{opacity:.5}
-.oi{display:flex;gap:6px;font-size:13px;line-height:1.5;flex-wrap:wrap}
-.oi .q{font-weight:700;color:var(--p)}
-.bars{display:flex;align-items:flex-end;gap:5px;height:170px;overflow-x:auto}
-.bar{flex:1;min-width:26px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:2px}
-.bar i{display:block;width:100%;background:var(--p);border-radius:5px 5px 0 0;min-height:2px}.bar span{font-size:9px;color:var(--m)}
-.bd{display:inline-block;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:700;background:var(--pt);color:var(--p)}.bd.w{background:#fff1e6;color:var(--wa)}.bd.x{background:#fde8e8;color:var(--er)}.bd.ok{background:#e6f6ef;color:var(--ok)}
-.sh{position:fixed;inset:0;z-index:60;background:rgba(8,20,35,.55);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.sh.o{opacity:1;pointer-events:auto}
-.sh>div{background:var(--bg);width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:10px 20px max(20px,env(safe-area-inset-bottom));transform:translateY(40px);transition:transform .25s}.sh.o>div{transform:none}
-.gr{width:40px;height:4px;border-radius:9px;background:var(--l);margin:0 auto 14px}
-.upprev{width:100%;aspect-ratio:4/3;border-radius:14px;background:var(--pt);border:2px dashed var(--l);display:grid;place-items:center;color:var(--m);overflow:hidden;cursor:pointer}
-.upprev img{width:100%;height:100%;object-fit:cover}
-#toast{position:fixed;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:300;color:#fff;padding:12px 20px;border-radius:12px;font-weight:600;max-width:90vw;box-shadow:var(--sh2);text-align:center}
-#fab{display:none}
-.pww{position:relative}.pww .i{padding-right:48px}
-.eye{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:36px;height:36px;border:0;background:transparent;border-radius:10px;display:grid;place-items:center;cursor:pointer;color:var(--m);padding:0}
-.eye:hover{color:var(--p);background:var(--pt)}
-#auth{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:20px;background:radial-gradient(900px 500px at 10% -10%,#2bb673 0,transparent 60%),radial-gradient(700px 500px at 100% 110%,rgba(255,94,31,.35) 0,transparent 60%),#0a3d2b}
-.aw{width:100%;max-width:380px;display:flex;flex-direction:column;gap:14px}
-.ac{background:var(--c);border-radius:24px;padding:28px 24px 20px;box-shadow:0 24px 60px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:14px}
-.ahd{text-align:center}.ahd h1{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:10px}.ahd p{font-size:13px}
-.alg{width:52px;height:52px;margin:auto;border-radius:16px;background:linear-gradient(135deg,#0a8d6b,#2bb673);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;box-shadow:0 8px 20px rgba(10,141,107,.35)}
-.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:12px;padding:4px}
-.seg button{border:0;background:0;padding:9px;border-radius:9px;font-weight:600;color:var(--m);cursor:pointer;transition:.15s}
-.seg button.on{background:var(--c);color:var(--t);box-shadow:var(--sh)}
-.lk{border:0;background:0;color:var(--m);font-size:13px;font-weight:600;cursor:pointer;padding:2px}.lk:hover{color:var(--p)}
-.qrwrap{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;background:#fff;border-radius:16px;margin:8px 0}
-.qrwrap canvas,.qrwrap img{background:#fff;padding:4px;border-radius:8px}
-.tabs2{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.tabs2 .chip{border:1.5px solid var(--l);background:var(--c);border-radius:99px;padding:8px 16px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap}
-.tabs2 .chip.on{background:var(--p);color:#fff;border-color:var(--p)}
-@media(min-width:901px){.sh{align-items:center}.sh>div{border-radius:24px}}
-@media(max-width:900px){
- #hd{flex:1}#nav{margin-left:0;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--c);border-top:1px solid var(--l);padding:6px 6px max(6px,env(safe-area-inset-bottom));justify-content:space-around;gap:0;overflow:visible;box-shadow:0 -4px 16px rgba(17,32,50,.08)}
- #nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;padding:6px 0;border-radius:10px;color:var(--m)}#nav button.on{color:var(--p);background:var(--pt)}#nav .ic{display:block}
- main{padding:14px 14px 150px}.kpi{grid-template-columns:1fr 1fr}
- .mc{grid-template-columns:repeat(2,1fr)}
- #fab{display:flex;position:fixed;left:14px;right:14px;bottom:calc(74px + env(safe-area-inset-bottom));z-index:25;justify-content:center;align-items:center;padding:15px 20px;border-radius:16px;background:var(--or);color:#fff;border:0;box-shadow:0 10px 28px rgba(255,94,31,.4);font-weight:700;gap:8px}
+:root{
+  --bg:#faf7f2; --c:#fff; --l:#eee6dc; --t:#1a1a1a; --m:#7a6f64; --m2:#a89e92;
+  --p:#e85d2c; --pt:#fff2ec; --or:#ff6b35; --ok:#0a8d6b; --er:#d93b3b; --wa:#e8780a;
+  --gold:#c8932f; --shadow:0 2px 12px rgba(60,40,20,.06); --shadow-lg:0 8px 28px rgba(60,40,20,.12);
+  --hero:#1f3a2e; --hero2:#2d5440;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--sans);background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;line-height:1.5;padding-bottom:90px;overscroll-behavior-y:none}
+input,select,textarea,button{font:inherit;color:inherit;border:0;background:0}
+button{cursor:pointer}
+[hidden]{display:none!important}
+img{display:block;max-width:100%}
+
+/* === HERO HEADER === */
+.hero{position:relative;color:#fff;padding:max(20px,env(safe-area-inset-top)) 20px 22px;background:linear-gradient(135deg,var(--hero) 0%,var(--hero2) 60%,#1a2e25 100%);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(232,93,44,.25) 0,transparent 50%),radial-gradient(circle at 20% 90%,rgba(200,147,47,.15) 0,transparent 40%);pointer-events:none}
+.hero-row{display:flex;align-items:flex-start;gap:14px;position:relative;z-index:1}
+.hero-logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#fff,#f0e6d2);color:var(--hero);display:grid;place-items:center;font-family:var(--serif);font-size:28px;font-weight:700;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.hero-info{flex:1;min-width:0}
+.hero-info h1{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:3px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.hero-sub{font-size:12px;opacity:.85;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.hero-sub span{display:inline-flex;align-items:center;gap:3px}
+.hero-meja{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600;margin-top:10px;width:fit-content}
+.hero-meja svg{width:14px;height:14px}
+.hero-status{position:absolute;top:max(20px,env(safe-area-inset-top));right:20px;z-index:2}
+.hero-status .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.25);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.25)}50%{box-shadow:0 0 0 6px rgba(74,222,128,.1)}} 
+.hero-status.off .dot{background:#fbbf24;box-shadow:0 0 0 3px rgba(251,191,36,.25)}
+
+/* === SEARCH === */
+.search-wrap{position:relative;z-index:10;padding:0 16px;margin-top:-14px}
+.search{position:relative;background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;padding:12px 16px}
+.search svg{width:18px;height:18px;color:var(--m2);flex:none}
+.search input{flex:1;font-size:15px;outline:0;min-width:0}
+.search input::placeholder{color:var(--m2)}
+
+/* === CATEGORIES === */
+#cats{position:sticky;top:0;z-index:15;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:14px 16px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#cats::-webkit-scrollbar{display:none}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--l);border-radius:99px;padding:9px 18px;font-weight:600;font-size:13px;white-space:nowrap;scroll-snap-align:start;color:var(--m);transition:.15s}
+.chip.on{background:var(--hero);border-color:var(--hero);color:#fff;box-shadow:0 4px 12px rgba(31,58,46,.25)}
+.chip .ico{font-size:14px}
+
+/* === MENU LIST === */
+main{padding:6px 16px 20px;max-width:720px;margin:auto}
+.sec-ttl{font-family:var(--serif);font-size:20px;font-weight:700;margin:20px 4px 12px;color:var(--t);display:flex;align-items:baseline;gap:8px}
+.sec-ttl small{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--m2)}
+.sec-ttl::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--l),transparent);margin-left:6px}
+
+.ml{display:flex;flex-direction:column;gap:12px}
+.mi{display:flex;gap:14px;background:#fff;border-radius:16px;padding:12px;box-shadow:var(--shadow);transition:.2s;overflow:hidden;position:relative}
+.mi:active{transform:scale(.99)}
+.mi.z{opacity:.55}
+.mi .ph{width:108px;height:108px;border-radius:14px;background:linear-gradient(135deg,var(--pt),#f9e9df);display:grid;place-items:center;font-size:38px;flex:none;overflow:hidden;position:relative}
+.mi .ph img{width:100%;height:100%;object-fit:cover}
+.mi .ph .emo{filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))}
+.mi .bd{flex:1;min-width:0;display:flex;flex-direction:column;padding:2px 0}
+.mi .nm{font-weight:700;font-size:15.5px;line-height:1.3;color:var(--t);display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.mi .ds{font-size:12.5px;color:var(--m);line-height:1.45;margin:4px 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mi .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.mi .pr{font-weight:800;color:var(--or);font-size:16px;font-family:var(--serif)}
+.mi .pr small{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--m2);margin-right:2px}
+.mi .add{display:flex;align-items:center;gap:8px}
+.mi .add .qty{font-weight:700;font-size:15px;min-width:22px;text-align:center;color:var(--t)}
+.mi-btn{width:32px;height:32px;border-radius:10px;font-weight:700;font-size:18px;display:grid;place-items:center;transition:.15s;padding:0;user-select:none}
+.mi-btn.add{background:var(--or);color:#fff;box-shadow:0 3px 8px rgba(255,107,53,.3);width:auto;padding:0 14px;font-size:13px;gap:4px;display:inline-flex}
+.mi-btn.min{background:#fff;border:1.5px solid var(--l);color:var(--or)}
+.mi-btn.pls{background:var(--or);color:#fff}
+.mi-btn:active{transform:scale(.9)}
+.st-badge{display:inline-flex;align-items:center;gap:3px;border-radius:6px;padding:2px 7px;font-size:10px;font-weight:700;background:#fde8e8;color:var(--er);letter-spacing:.02em;text-transform:uppercase}
+
+/* === CART BAR === */
+#cart-bar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:30;background:linear-gradient(135deg,var(--or),#e84d20);border-radius:16px;padding:14px 18px;box-shadow:0 10px 28px rgba(255,107,53,.4);display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fff;transform:translateY(calc(100% + 30px));transition:transform .3s cubic-bezier(.4,0,.2,1)}
+#cart-bar.show{transform:none}
+#cart-bar .info{flex:1;min-width:0}
+#cart-bar .info .cnt{font-size:12px;opacity:.9;font-weight:600;display:flex;align-items:center;gap:6px}
+#cart-bar .info .cnt .badge{background:rgba(255,255,255,.25);border-radius:99px;padding:1px 8px;font-size:11px}
+#cart-bar .info .tot{font-size:17px;font-weight:800;line-height:1.2}
+#cart-bar .go{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;white-space:nowrap}
+#cart-bar .go svg{width:16px;height:16px}
+
+/* === SHEET === */
+.sheet{position:fixed;inset:0;z-index:60;background:rgba(15,20,15,.55);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet.o{opacity:1;pointer-events:auto}
+.sheet>div{background:var(--bg);width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:10px 20px max(20px,env(safe-area-inset-bottom));transform:translateY(60px);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.sheet.o>div{transform:none}
+.gr{width:42px;height:4px;border-radius:9px;background:var(--l);margin:0 auto 16px}
+.sheet-title{font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:4px}
+.sheet-sub{font-size:13px;color:var(--m);margin-bottom:14px}
+
+/* === CART ITEMS === */
+.ci{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--l)}
+.ci:last-child{border:0}
+.ci .ph-mini{width:56px;height:56px;border-radius:10px;background:var(--pt);display:grid;place-items:center;font-size:22px;flex:none;overflow:hidden}
+.ci .ph-mini img{width:100%;height:100%;object-fit:cover}
+.ci .nm{flex:1;min-width:0}
+.ci .nm .ttl{font-weight:600;font-size:14.5px;line-height:1.3}
+.ci .nm .pr-mini{font-size:12px;color:var(--m);margin-top:2px}
+.ci .qbtn{display:flex;align-items:center;gap:8px;margin-top:6px}
+.ci .qbtn button{width:28px;height:28px;border-radius:8px;font-weight:700;font-size:16px;display:grid;place-items:center;padding:0}
+.ci .qbtn .min{background:#fff;border:1.5px solid var(--l);color:var(--or)}
+.ci .qbtn .pls{background:var(--or);color:#fff}
+.ci .qbtn .q{font-weight:700;min-width:22px;text-align:center;font-size:15px}
+.ci .sub{font-weight:800;color:var(--or);font-size:15px;font-family:var(--serif);text-align:right;white-space:nowrap}
+
+/* === SUMMARY === */
+.sum{background:#fff;border-radius:14px;padding:14px 16px;margin-top:14px;box-shadow:var(--shadow)}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;color:var(--m);padding:3px 0}
+.sum-row.total{font-size:18px;font-weight:800;color:var(--t);border-top:1px dashed var(--l);margin-top:8px;padding-top:10px}
+.sum-row.total .val{color:var(--or);font-family:var(--serif);font-size:20px}
+.sum-note{font-size:11.5px;color:var(--m2);text-align:center;margin-top:10px;padding:8px;background:var(--pt);border-radius:10px}
+
+.btn-primary{display:block;width:100%;background:linear-gradient(135deg,var(--or),#e84d20);color:#fff;font-weight:700;font-size:15px;padding:15px;border-radius:14px;box-shadow:0 6px 16px rgba(255,107,53,.35);margin-top:14px;transition:.15s}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{opacity:.5;cursor:default}
+.btn-ghost{background:#fff;border:1.5px solid var(--l);color:var(--m);font-weight:600;padding:11px 18px;border-radius:12px;font-size:14px}
+.input{width:100%;background:#fff;border:1.5px solid var(--l);border-radius:12px;padding:13px 15px;font-size:15px;outline:0;margin-top:10px}
+.input:focus{border-color:var(--or)}
+
+/* === STATUS CARD === */
+#status-card{background:#fff;border-radius:16px;padding:16px;box-shadow:var(--shadow);margin-top:16px;border-left:4px solid var(--or)}
+.st-progress{display:flex;gap:4px;margin:10px 0 14px}
+.st-step{flex:1;height:4px;border-radius:99px;background:var(--l);transition:.3s}
+.st-step.on{background:var(--or)}
+.st-step.done{background:var(--ok)}
+.st-row{display:flex;gap:12px;align-items:flex-start}
+.st-ico{font-size:30px;flex:none;line-height:1}
+.st-body{flex:1;min-width:0}
+.st-body .lbl{font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.st-body .desc{font-size:12.5px;color:var(--m);margin-top:3px;line-height:1.4}
+.st-body .meta{font-size:11.5px;color:var(--m2);margin-top:6px}
+.st-body .meta b{color:var(--t)}
+.st-badge2{display:inline-flex;align-items:center;gap:4px;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700}
+.st-badge2.new{background:#fff4e5;color:var(--or)}
+.st-badge2.proc{background:#fff1e6;color:var(--wa)}
+.st-badge2.done{background:#e6f6ef;color:var(--ok)}
+.st-badge2.cancel{background:#fde8e8;color:var(--er)}
+
+/* === TOAST === */
+#toast{position:fixed;top:max(16px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:300;color:#fff;padding:13px 22px;border-radius:14px;font-weight:600;font-size:14px;max-width:90vw;box-shadow:var(--shadow-lg);text-align:center;background:var(--hero);opacity:0;transition:.25s;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* === EMPTY & ERROR === */
+.empty{text-align:center;padding:50px 20px;color:var(--m)}
+.empty .ico{font-size:56px;margin-bottom:12px;opacity:.5}
+.empty p{font-size:14px;line-height:1.5}
+.err-screen{min-height:100vh;display:grid;place-items:center;padding:30px;text-align:center;background:linear-gradient(135deg,var(--hero),var(--hero2))}
+.err-card{background:#fff;border-radius:24px;padding:36px 28px;box-shadow:var(--shadow-lg);max-width:380px;width:100%}
+.err-card .ico{font-size:56px;margin-bottom:14px}
+.err-card h1{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--t)}
+.err-card p{color:var(--m);font-size:14px;line-height:1.55;margin-bottom:18px}
+.err-card .btn-primary{margin-top:0}
+
+/* loading */
+#loading{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,var(--hero),var(--hero2));color:#fff}
+.loader{text-align:center}
+.loader .spin{width:48px;height:48px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 14px}
+.loader p{font-weight:600;opacity:.9;font-size:14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+@media(max-width:380px){
+ .mi .ph{width:92px;height:92px;font-size:32px}
+ .hero-info h1{font-size:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- ====== HALAMAN LOGIN/DAFTAR ====== -->
-<div id="auth" hidden><div class="aw">
- <div class="ac">
-  <div class="ahd"><div class="alg">M</div><h1>MenuKu</h1><p id="as" class="m">Dashboard Menu Digital QR Code</p></div>
-  <div class="seg"><button type="button" id="sg0" class="on" onclick="swAuth(0)">Masuk</button><button type="button" id="sg1" onclick="swAuth(1)">Daftar</button></div>
-  <div id="atw" hidden class="col" style="gap:6px"><div class="lb" style="margin:0">Nama restoran</div><input id="at" class="i" placeholder="mis. Warung Berkah" autocomplete="organization"></div>
-  <div class="col" style="gap:6px"><div class="lb" style="margin:0">No. WhatsApp</div><input id="au" class="i" inputmode="tel" placeholder="0812-3456-7890" autocomplete="tel" autocapitalize="off" spellcheck="false" enterkeyhint="next" onkeydown="if(event.key==='Enter')$('ap').focus()"></div>
-  <div class="col" style="gap:6px"><div class="lb" style="margin:0">Sandi</div><div class="pww"><input id="ap" type="password" class="i" placeholder="Minimal 6 karakter" autocomplete="current-password" autocapitalize="off" spellcheck="false" enterkeyhint="go" onkeydown="if(event.key==='Enter')doAuth()"><button type="button" class="eye" onclick="pwTg('ap',this)" title="Lihat sandi"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
-  <button id="ab" type="button" class="b o" style="padding:14px;width:100%" onclick="doAuth()">Masuk</button>
-  <button type="button" class="lk" onclick="forgot()">Lupa sandi?</button>
- </div>
-</div></div>
-
-<!-- ====== APLIKASI ====== -->
-<div id="app" hidden>
- <header><div class="lg" id="lg">M</div><div id="hd"><b id="tt"></b><div id="uu"></div></div><nav id="nav"></nav><button class="bl" onclick="op()" title="Notifikasi"><svg class="ic" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg><i id="bc" hidden></i></button><span id="dot" title="Sinkron"></span></header>
- <div id="sb" hidden></div>
- <main>
-  <!-- BERANDA -->
-  <section id="v-home" hidden class="col"><div id="hs" class="kpi"></div>
-   <div class="c"><b>Pesanan terbaru</b><div id="hl" style="margin-top:8px"></div></div>
-   <div class="c"><b>Menu terlaris (7 hari)</b><div id="ht" class="col" style="margin-top:8px"></div></div>
-  </section>
-  <!-- PESANAN REAL-TIME -->
-  <section id="v-pesanan" hidden class="col">
-   <div class="c">
-    <div class="r jb"><b>Pesanan masuk</b><span class="s m" id="plive"></span></div>
-    <div class="tabs2" id="pft"></div>
-    <div id="plist"></div>
-   </div>
-  </section>
-  <!-- MENU -->
-  <section id="v-menu" hidden class="col"><div class="r w"><input id="mq" class="i f" placeholder="Cari menu…" oninput="rMenu()"><button class="b" style="white-space:nowrap" onclick="openM()">+ Menu</button></div><div id="mf" class="r" style="margin-bottom:10px"></div><div id="ml" class="mc"></div></section>
-  <!-- MEJA -->
-  <section id="v-meja" hidden class="col">
-   <div class="c">
-    <div class="r jb"><b>Meja &amp; QR Code</b></div>
-    <p class="s m">Pindai QR Code di meja untuk membuka menu digital. Pelanggan memesan langsung dari HP.</p>
-    <div class="r w" style="margin-top:10px">
-      <input id="jn" type="number" min="1" max="200" class="i f" style="max-width:160px" placeholder="Jumlah meja">
-      <button class="b" onclick="jbGen()">Generate meja</button>
-      <button class="g" onclick="addMeja()">+ 1 meja</button>
-    </div>
-   </div>
-   <div id="jl"></div>
-   <div class="r w" style="margin-top:8px"><button class="g" onclick="qrAll()">Unduh semua QR</button><button class="g" onclick="qrPrint()">Cetak semua QR</button></div>
-  </section>
-  <!-- SETELAN -->
-  <section id="v-set" hidden class="col" style="max-width:760px">
-   <div class="c col"><b>Profil restoran</b><div class="r w"><input id="sn" class="i f" placeholder="Nama restoran"><input id="st" class="i f" placeholder="Telepon"></div><input id="sa" class="i" placeholder="Alamat"><div class="r w"><input id="swb" class="i f" placeholder="Jam buka (mis. 08:00)"><input id="swt" class="i f" placeholder="Jam tutup (mis. 22:00)"></div><input id="sf" class="i" placeholder="Teks footer struk / menu"></div>
-   <div class="c col"><b>Pajak &amp; biaya layanan</b><p class="s m">Ditambahkan otomatis ke total pesanan pelanggan.</p><div class="r w"><div class="f col"><div class="lb">Pajak %</div><input id="sp" type="number" min="0" max="100" class="i"></div><div class="f col"><div class="lb">Service %</div><input id="ss" type="number" min="0" max="100" class="i"></div></div></div>
-   <div class="c col own"><b>ImageKit — Key per-restoran (opsional)</b>
-    <p class="s m">Isi <b>Private Key</b> ImageKit Anda sendiri agar foto menu disimpan di akun ImageKit Anda. Jika <b>dikosongkan</b>, sistem memakai <b>key default</b> yang sudah ada di backend (Script properties Apps Script).</p>
-    <div class="col" style="gap:6px"><div class="lb">Private Key ImageKit (per-restoran)</div><div class="pww"><input id="sik" type="password" class="i" placeholder="private_xxxxxxxx= (kosongkan = pakai default)" autocomplete="off"><button type="button" class="eye" onclick="pwTg('sik',this)" title="Lihat key"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
-    <div class="col" style="gap:6px"><div class="lb">URL Endpoint ImageKit (opsional)</div><input id="siku" class="i" placeholder="https://ik.imagekit.io/usernameAnda (kosongkan = default)"></div>
-    <div id="ikinfo" class="s m" style="margin-top:4px"></div>
-   </div>
-   <div class="c col"><b>Tampilan</b><div class="r w"><button class="g" onclick="dark()">Terang / Gelap</button></div></div>
-   <div class="c col own"><b>Akun kasir</b><div class="rknote s m" style="display:flex;gap:8px"><span>i</span><span>Kasir masuk dengan No. WA mereka untuk menerima &amp; memproses pesanan.</span></div><div class="r w"><input id="tu" class="i f" inputmode="tel" placeholder="No. WA kasir" autocomplete="off"><input id="tp" type="password" class="i f" placeholder="Sandi awal (min 6)"><button class="b" onclick="addU()">Tambah</button></div><div id="ul" class="col"></div></div>
-   <div class="c col"><b>Ganti sandi</b><div class="r w"><input id="c0" type="password" class="i f" placeholder="Sandi lama"><input id="c1" type="password" class="i f" placeholder="Sandi baru"><button class="b" onclick="chPass()">Ganti</button></div></div>
-   <button class="b" style="padding:14px;background:var(--er)" onclick="out()">Keluar</button>
-   <div style="height:20px"></div>
-   <div class="c col"><b>Tautan menu publik</b><p class="s m">Bagikan tautan ini atau cetak QR Code per meja di menu Meja.</p><div class="r w"><input id="pul" class="i f" readonly><button class="g" onclick="cpPub()">Salin</button><button class="g" onclick="openPub()">Buka</button></div></div>
-  </section>
- </main>
- <button id="fab" class="b" onclick="go('pesanan')"><svg class="ic" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg><span id="fn">0 pesanan baru</span></button>
+<div id="loading">
+  <div class="loader">
+    <div class="spin"></div>
+    <p>Menyiapkan menu…</p>
+  </div>
 </div>
 
-<!-- ====== MODAL MENU ====== -->
-<div id="shm" class="sh" onclick="if(event.target===this)cs()"><div>
- <div class="gr"></div><div class="r jb"><b id="mt" style="font-size:18px">Menu baru</b><button class="g" onclick="cs()">Tutup</button></div>
- <div class="col" style="margin-top:12px">
-  <div class="lb">Foto menu</div>
-  <div class="upprev" id="upPrev" onclick="$('mf2').click()">
-    <span id="upHint">Ketuk untuk pilih foto (akan dikompres otomatis)</span>
-    <img id="upImg" hidden>
+<div id="err" class="err-screen" hidden>
+  <div class="err-card">
+    <div class="ico" id="err-ico">🍽</div>
+    <h1 id="err-t">Menu tidak tersedia</h1>
+    <p id="err-m">Periksa QR Code atau hubungi kasir.</p>
+    <button class="btn-primary" onclick="location.reload()">Coba lagi</button>
   </div>
-  <input id="mf2" type="file" accept="image/*" hidden onchange="onPick(this)">
-  <div id="upInfo" class="s m" style="min-height:14px"></div>
-  <div class="lb">Nama menu</div><input id="mn" class="i" placeholder="mis. Nasi Goreng Spesial" enterkeyhint="next">
-  <div class="lb">Kategori</div><input id="mk" class="i" placeholder="mis. Makanan" enterkeyhint="next" list="kdl">
-  <datalist id="kdl"><option>Makanan</option><option>Minuman</option><option>Pembuka</option><option>Penutup</option><option>Snack</option><option>Paket</option></datalist>
-  <div class="lb">Deskripsi (opsional)</div><textarea id="md" class="i" rows="2" placeholder="Bahan / catatan singkat"></textarea>
-  <div class="lb">Harga</div><input id="mh" class="i rp" inputmode="numeric" placeholder="0">
-  <div class="lb">Status</div><div class="r w"><button class="chip" id="st1" onclick="setSt('tersedia')">Tersedia</button><button class="chip" id="st2" onclick="setSt('habis')">Habis</button></div>
-  <button class="b o" style="padding:14px" onclick="saveM()">Simpan menu</button>
- </div>
-</div></div>
+</div>
 
-<!-- ====== MODAL MEJA (QR) ====== -->
-<div id="shj" class="sh" onclick="if(event.target===this)cs()"><div style="text-align:center">
- <div class="gr"></div><div class="r jb"><b id="jt" style="font-size:18px">QR Code Meja</b><button class="g" onclick="cs()">Tutup</button></div>
- <div id="qrBox" style="margin-top:12px"></div>
- <div class="col" style="margin-top:14px;gap:8px">
-  <input id="jl2" class="i" placeholder="Label meja (opsional, mis. Meja VIP)" oninput="saveLabel()">
-  <div class="r w"><button class="b" onclick="qrDl()">Unduh QR</button><button class="g" onclick="qrPr()">Cetak QR</button><button class="g" style="color:var(--er)" onclick="delMeja()">Hapus meja</button></div>
- </div>
-</div></div>
+<div id="app" hidden>
+  <header class="hero">
+    <div class="hero-status" id="hstat"><div class="dot"></div></div>
+    <div class="hero-row">
+      <div class="hero-logo" id="lg">M</div>
+      <div class="hero-info">
+        <h1 id="nm">—</h1>
+        <div class="hero-sub" id="sub"></div>
+        <div class="hero-meja">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <span id="meja">Meja ?</span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<!-- ====== MODAL NOTIFIKASI ====== -->
-<div id="shn" class="sh" onclick="if(event.target===this)cs()"><div><div class="gr"></div><div class="r jb"><b style="font-size:18px">Notifikasi</b><button class="g" onclick="cs()">Tutup</button></div><div id="nl" style="margin-top:8px"></div></div></div>
+  <div class="search-wrap">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" placeholder="Cari menu favorit Anda…" oninput="renderMenu()">
+    </div>
+  </div>
 
-<!-- ====== MODAL LUPA SANDI ====== -->
-<div id="shf" class="sh" onclick="if(event.target===this)cs()"><div><div class="gr"></div><div class="r jb"><b style="font-size:18px">Lupa sandi</b><button class="g" onclick="cs()">Tutup</button></div>
-<div class="col" style="margin-top:12px">
- <div class="rknote s m" style="display:flex;gap:8px;background:var(--pt);padding:10px;border-radius:12px"><span>i</span><span>Hubungi admin untuk mendapatkan Kunci Pemilik.</span></div>
- <div class="lb">No. WhatsApp akun</div><input id="fpw" class="i" inputmode="tel" placeholder="0812-3456-7890">
- <div class="lb">Kunci Pemilik</div><div class="pww"><input id="fpk" type="password" class="i" placeholder="Kunci rahasia pemilik"><button type="button" class="eye" onclick="pwTg('fpk',this)"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
- <div class="r"><div class="f col"><div class="lb">Sandi baru</div><input id="fpn" type="password" class="i" placeholder="Min. 6 karakter"></div><div class="f col"><div class="lb">Ulangi</div><input id="fpn2" type="password" class="i"></div></div>
- <button class="b o" style="padding:14px" onclick="doForgot()">Reset sandi</button>
-</div></div></div>
+  <div id="cats"></div>
 
-<div id="toast" hidden></div>
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <main>
+    <div id="menu-list" class="ml"></div>
+    <div id="status-card" hidden></div>
+    <div id="foot" style="text-align:center;padding:20px 14px 30px;color:var(--m2);font-size:12px;line-height:1.6"></div>
+  </main>
+
+  <div id="cart-bar" hidden>
+    <div class="info">
+      <div class="cnt"><span class="badge" id="cb-n">0</span> item dalam keranjang</div>
+      <div class="tot" id="cb-t">Rp 0</div>
+    </div>
+    <div class="go">
+      <span>Lihat pesanan</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CART -->
+<div id="shc" class="sheet" onclick="if(event.target===this)cs()">
+  <div>
+    <div class="gr"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <div><div class="sheet-title">Pesanan Anda</div><div class="sheet-sub">Meja <b id="sc-meja">?</b> · periksa kembali sebelum kirim</div></div>
+      <button class="btn-ghost" onclick="cs()">Tutup</button>
+    </div>
+    <div id="cart-items"></div>
+    <div id="cart-sum"></div>
+    <input id="catPel" class="input" placeholder="Catatan untuk kasir / nama (opsional)">
+    <button class="btn-primary" id="kirimBtn" onclick="kirim()">
+      <svg style="display:inline-block;vertical-align:-3px;margin-right:6px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      Kirim pesanan ke dapur
+    </button>
+  </div>
+</div>
+
+<!-- MODAL STATUS -->
+<div id="shs" class="sheet" onclick="if(event.target===this)cs()">
+  <div style="text-align:center">
+    <div class="gr"></div>
+    <div id="status-content"></div>
+    <button class="btn-ghost" style="margin-top:18px" onclick="cs()">Tutup</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
 <script>
-/* ============================================================
- * MenuKu — Dashboard Owner/Kasir
- * ============================================================ */
-const API = 'https://script.google.com/macros/s/AKfycbz3yedhl9M8UheDo8C3aMqyNKr-piXrghBJURh2r5Ut8QyDvymGERmWG1yHU9NcBKg/exec'; // <-- Ganti dengan URL /exec Web App Apps Script Anda
+const API = 'https://script.google.com/macros/s/AKfycbz3yedhl9M8UheDo8C3aMqyNKr-piXrghBJURh2r5Ut8QyDvymGERmWG1yHU9NcBKg/exec';
 const $ = i => document.getElementById(i), R = n => 'Rp ' + Math.round(+n || 0).toLocaleString('id-ID');
 const E = s => String(s ?? '').replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
-const L = (k, v) => { try { return v === undefined ? JSON.parse(localStorage.getItem(k)) : localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } };
-let S = { tok: L('tok'), d: null, q: L('q') || [], tab: 'pesanan', ps: 'BARU', edit: null, busy: 0, sd: 0, lastCnt: 0 };
-const D = () => S.d, st = () => D().setting || {}, own = () => D().user.role === 'owner';
-const uid = p => p + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase();
-const IC = { home:'<path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>', pesanan:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>', menu:'<path d="M3 5h18M3 12h18M3 19h18"/>', meja:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>', set:'<path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>' };
-const nv = id => +String($(id).value).replace(/\D/g, '') || 0;
-const sv = (i, v) => { $(i).value = $(i).classList.contains('rp') ? (v ? (+v).toLocaleString('id-ID') : '') : (v ?? ''); };
-document.addEventListener('input', e => { const t = e.target; if (t.classList.contains('rp')) { const n = t.value.replace(/\D/g, ''); t.value = n ? (+n).toLocaleString('id-ID') : ''; } });
-const normWa = s => { let d = String(s || '').replace(/\D/g, ''); if (d.startsWith('62')) d = '0' + d.slice(2); if (/^8\d{8,13}$/.test(d)) d = '0' + d; return d; };
-const okWa = d => /^08\d{8,12}$/.test(d);
-const fWa = d => { const s = String(d || '').replace(/\D/g, ''); return s.length > 8 ? s.slice(0, 4) + '-' + s.slice(4, 8) + '-' + s.slice(8, 12) + (s.length > 12 ? '-' + s.slice(12, 15) : '') : s; };
+const params = new URLSearchParams(location.search);
+const TOK = params.get('t') || '', MEJA = +params.get('m') || 0;
+let DATA = null, cart = {}, curCat = 'Semua', lastOrd = null, lastStatus = '';
 
-function toast(m, e) { const t = $('toast'); t.textContent = m; t.style.background = e === 2 ? '#e8780a' : e ? '#d93b3b' : '#0f9d6b'; t.hidden = 0; clearTimeout(t._t); t._t = setTimeout(() => t.hidden = 1, 3000); }
+function toast(m, e) {
+  const t = $('toast');
+  t.textContent = m;
+  t.style.background = e ? 'var(--er)' : 'var(--hero)';
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
 async function api(action, b = {}) {
-  if (API.startsWith('GANTI')) throw new Error('URL Web App belum diisi di variabel API');
   let r, t;
-  try { r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, token: S.tok, ...b }) }); t = await r.text(); }
-  catch (e) { const x = new Error('Tidak ada koneksi ke server'); x.net = 1; throw x; }
-  let j; try { j = JSON.parse(t); } catch (e) { throw new Error('Respons bukan JSON. Pastikan URL berakhiran /exec dan akses "Anyone"'); }
-  if (!j.ok) { if (/Sesi habis/.test(j.error)) { showAuth(); throw new Error('Sesi habis'); } throw new Error(j.error); }
+  try { r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...b }) }); t = await r.text(); }
+  catch (e) { throw new Error('Tidak ada koneksi. Periksa internet.'); }
+  let j; try { j = JSON.parse(t); } catch (e) { throw new Error('Server tidak merespons. Hubungi kasir.'); }
+  if (!j.ok) throw new Error(j.error || 'Terjadi kesalahan');
   return j;
 }
-const run = f => f().catch(e => toast(e.message, 1));
-const dot = () => $('dot').className = (S.busy || S.q.length) ? 'x' : '';
 
-/* Antrean sinkron */
-let ft; function push(o) { S.q.push(o); L('q', S.q); L('d', S.d); dot(); clearTimeout(ft); ft = setTimeout(flush, 350); }
-function sbar(m, retry) { const b = $('sb'); b.hidden = !m; b.innerHTML = m ? `<span>${E(m)}</span>` + (retry ? '<span class="r"><button class="g" onclick="flush()">Coba lagi</button><button class="g" onclick="dropQ()">Buang</button></span>' : '') : ''; }
-function dropQ() { if (!confirm('Buang ' + S.q.length + ' perubahan tertunda?')) return; S.q = []; L('q', S.q); sbar(''); dot(); pull(); }
-function flush() {
-  if (S.busy || !S.q.length || !S.tok) return;
-  S.busy = 1; const n = S.q.length; let ok = 0; dot();
-  api('sync', { ops: S.q.slice(0, n) })
-    .then(r => { S.q.splice(0, n); L('q', S.q); sbar(''); (r.err || []).forEach(e => toast(e, 1)); ok = 1; })
-    .catch(e => { if (!S.tok) return; if (e.net) { sbar('Offline · ' + S.q.length + ' perubahan menunggu'); setTimeout(flush, 4000); } else sbar(e.message + ' · ' + S.q.length + ' tertunda', 1); })
-    .finally(() => { S.busy = 0; dot(); if (ok && S.q.length) flush(); });
-}
-function pull() { if (S.busy || S.q.length) return; api('data').then(j => { if (!S.q.length) setD(j); }).catch(() => {}); }
-setInterval(pull, 8000); // polling cepat untuk pesanan real-time
-addEventListener('online', flush);
-
-const EYE_ON = '<svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
-const EYE_OFF = '<svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 3.5l16.5 17"/></svg>';
-function pwTg(id, b) { const i = $(id), show = i.type === 'password'; i.type = show ? 'text' : 'password'; b.innerHTML = show ? EYE_OFF : EYE_ON; i.focus(); }
-
-/* ============================================================
- * AUTH
- * ============================================================ */
-function showAuth() { L('tok', null); L('d', null); S.tok = null; $('app').hidden = 1; $('auth').hidden = 0; swAuth(0); const lwa = L('lwa'); if (lwa && !$('au').value) $('au').value = fWa(lwa); }
-function swAuth(r) { S.reg = !!r; $('sg0').classList.toggle('on', !r); $('sg1').classList.toggle('on', !!r); $('atw').hidden = !r; $('ab').textContent = r ? 'Daftar restoran' : 'Masuk'; $('as').textContent = r ? 'Daftarkan restoran baru' : 'Masuk ke dashboard'; }
-function doAuth() {
-  const w = normWa($('au').value);
-  if (!okWa(w)) return toast('No. WA tidak valid — pakai format 08', 1);
-  if (!$('ap').value) return toast('Sandi wajib diisi', 1);
-  if (S.reg && !$('at').value.trim()) return toast('Nama restoran wajib diisi', 1);
-  const b = $('ab'); b.disabled = 1; b.textContent = 'Memproses…';
-  run(async () => {
-    const j = await api(S.reg ? 'register' : 'login', S.reg ? { no_wa: w, password: $('ap').value, toko: $('at').value } : { no_wa: w, password: $('ap').value });
-    L('lwa', w); S.tok = j.token; L('tok', j.token); $('ap').value = ''; setD(j); flush();
-    if (S.reg) { swAuth(0); setTimeout(() => toast('Restoran terdaftar! Tambahkan menu & generate meja.', 2), 1000); }
-  }).finally(() => { b.disabled = 0; b.textContent = S.reg ? 'Daftar restoran' : 'Masuk'; });
-}
-function forgot() { const w = $('au').value; if (w && !$('fpw').value) $('fpw').value = w; $('shf').classList.add('o'); }
-function doForgot() { run(async () => {
-  const w = normWa($('fpw').value); if (!okWa(w)) return toast('No. WA tidak valid', 1);
-  const k = $('fpk').value.trim(); if (!k) return toast('Isi Kunci Pemilik', 1);
-  const n = $('fpn').value; if (n.length < 6) return toast('Sandi baru min 6 karakter', 1);
-  if (n !== $('fpn2').value) return toast('Ulangi sandi tidak sama', 1);
-  await api('forgotPass', { wa: w, kunci: k, baru: n });
-  cs(); swAuth(0); $('au').value = fWa(w); toast('Sandi berhasil direset — silakan masuk');
-}); }
-function out() { if (!confirm('Keluar? Perubahan tertunda: ' + S.q.length)) return; api('logout').catch(() => {}); L('q', null); showAuth(); }
-
-/* ============================================================
- * DATA
- * ============================================================ */
-function setD(j) {
-  S.d = j; L('d', j); $('auth').hidden = 1; $('app').hidden = 0;
-  $('tt').textContent = st().nama || j.toko; $('lg').textContent = 'M';
-  $('uu').textContent = fWa(j.user.wa) + ' · ' + (own() ? 'Owner' : 'Kasir');
-  nav(); all();
-  const baru = (j.pesanan || []).filter(p => p.status === 'BARU').length;
-  $('fn').textContent = baru + ' pesanan baru'; $('fab').style.display = (baru && S.tab !== 'pesanan') ? '' : 'none';
-}
-function all() { rHome(); rPesanan(); rMenu(); rMeja(); rSet(); bell(); }
-const TABS = () => own() ? [['home','Beranda'],['pesanan','Pesanan'],['menu','Menu'],['meja','Meja'],['set','Setelan']] : [['pesanan','Pesanan'],['meja','Meja'],['set','Setelan']];
-function nav() {
-  $('nav').innerHTML = TABS().map(t => `<button data-t="${t[0]}" onclick="go('${t[0]}')"><svg class="ic" viewBox="0 0 24 24">${IC[t[0]]}</svg><span>${t[1]}</span></button>`).join('');
-  document.querySelectorAll('.own').forEach(e => e.hidden = !own());
-  go(S.tab);
-}
-function go(t) { if (!TABS().some(x => x[0] === t)) t = 'pesanan'; S.tab = t;
-  ['home','pesanan','menu','meja','set'].forEach(x => $('v-' + x).hidden = x !== t);
-  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
-  const baru = (D().pesanan || []).filter(p => p.status === 'BARU').length;
-  $('fab').style.display = (baru && t !== 'pesanan') ? '' : 'none';
-  if (t === 'home') rHome(); if (t === 'pesanan') rPesanan();
+function fail(title, msg, ico = '🍽') {
+  $('loading').hidden = 1; $('err').hidden = 0;
+  $('err-t').textContent = title; $('err-m').textContent = msg; $('err-ico').textContent = ico;
 }
 
-/* ============================================================
- * KOMPRES GAMBAR (client-side, canvas)
- * Wajib: foto menu dikompres SEBELUM diunggah ke ImageKit.
- * - Resize agar sisi terpanjang <= maxDim (default 900px)
- * - Konversi ke JPEG quality 0.78 (jauh lebih kecil dari PNG asli)
- * - Bila hasil masih > 1.2MB, turunkan quality bertahap
- * ============================================================ */
-async function compressImage(file, maxDim = 900, quality = 0.78) {
-  if (!file.type.startsWith('image/')) throw new Error('File bukan gambar');
-  const bitmap = await loadImage(file);
-  let { width: w, height: h } = bitmap;
-  const scale = Math.min(1, maxDim / Math.max(w, h));
-  w = Math.round(w * scale); h = Math.round(h * scale);
-  const canvas = document.createElement('canvas');
-  canvas.width = w; canvas.height = h;
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
-  ctx.drawImage(bitmap, 0, 0, w, h);
-  let mime = 'image/jpeg', dataUrl;
-  // Turunkan quality bertahap bila masih terlalu besar
-  let q = quality;
-  while (q > 0.3) {
-    dataUrl = canvas.toDataURL(mime, q);
-    if (dataUrl.length <= 1.4e6) break;
-    q -= 0.1;
-  }
-  const kb = Math.round((dataUrl.length - dataUrl.indexOf(',') - 1) * 3 / 4 / 1024);
-  return { data: dataUrl.split(',')[1], mime, kb, w, h, url: dataUrl };
-}
-function loadImage(file) {
-  return new Promise((ok, no) => {
-    const u = URL.createObjectURL(file), im = new Image();
-    im.onload = () => { URL.revokeObjectURL(u); ok(im); };
-    im.onerror = () => { URL.revokeObjectURL(u); no(new Error('Gambar tidak valid')); };
-    im.src = u;
-  });
-}
-
-/* ============================================================
- * MENU — CRUD + upload foto terkompres
- * ============================================================ */
-let pickState = { raw: null, comp: null };
-async function onPick(input) {
-  const file = input.files[0]; if (!file) return;
-  $('upInfo').textContent = 'Mengompres gambar…';
+async function init() {
+  if (!TOK) return fail('QR Code tidak valid', 'QR Code tidak berisi token toko. Pindai ulang QR Code di meja.', '⚠️');
+  if (!MEJA) return fail('Meja tidak ditemukan', 'Pindai ulang QR Code yang ada di meja Anda.', '🪑');
+  if (API.startsWith('GANTI')) return fail('Backend belum dikonfigurasi', 'Pemilik restoran belum mengisi URL API di menu.html. Hubungi kasir.', '🔧');
   try {
-    const rawKb = Math.round(file.size / 1024);
-    const c = await compressImage(file, 900, 0.78);
-    pickState.raw = file; pickState.comp = c;
-    $('upImg').src = c.url; $('upImg').hidden = 0; $('upHint').hidden = 1;
-    const ratio = rawKb > 0 ? Math.round((1 - c.kb / rawKb) * 100) : 0;
-    $('upInfo').innerHTML = `<b style="color:var(--ok)">Siap diunggah</b> · ${rawKb} KB → <b>${c.kb} KB</b> (${ratio}% lebih kecil) · ${c.w}×${c.h}px`;
-  } catch (e) { $('upInfo').textContent = 'Gagal: ' + e.message; }
+    DATA = await api('menu', { t: TOK, m: MEJA });
+    if (!DATA.meja_valid) return fail('Meja tidak terdaftar', 'Meja ' + MEJA + ' belum terdaftar di restoran ini. Hubungi kasir.', '🪑');
+    render();
+    cekStatus();
+    setInterval(cekStatus, 12000);
+  } catch (e) { fail('Gagal memuat menu', e.message, '📡'); }
 }
-function rMenu() {
-  if (!own()) return;
-  const q = ($('mq').value || '').toLowerCase();
-  const cats = ['Semua', ...new Set(D().menu.map(m => m.kategori || 'Makanan'))];
-  if (!cats.includes(S.mcat)) S.mcat = 'Semua';
-  $('mf').innerHTML = cats.map(c => `<button class="chip ${(S.mcat || 'Semua') === c ? 'on' : ''}" onclick="S.mcat='${c}';rMenu()">${E(c)}</button>`).join('');
-  $('ml').innerHTML = D().menu.filter(m => (S.mcat === 'Semua' || (m.kategori || 'Makanan') === S.mcat) && (m.nama + ' ' + m.kategori + ' ' + m.deskripsi).toLowerCase().includes(q))
-    .map(m => `<div class="mcard"><div class="ph">${m.foto ? `<img src="${E(m.foto)}" alt="${E(m.nama)}" loading="lazy">` : '🍽'}</div><span class="st ${m.status === 'habis' ? 'x' : ''}">${m.status === 'habis' ? 'Habis' : 'Tersedia'}</span><div class="bd"><div class="nm">${E(m.nama)}</div><div class="ds">${E(m.deskripsi || m.kategori)}</div><div class="r jb"><span class="pr">${R(m.harga)}</span><span class="r"><button class="g" onclick="openM('${m.id}')">Edit</button><button class="g" style="color:var(--er)" onclick="delM('${m.id}')">Hapus</button></span></div></div></div>`)
-    .join('') || '<p class="m" style="text-align:center;padding:30px;grid-column:1/-1">Belum ada menu. Tekan “+ Menu”.</p>';
+
+function render() {
+  $('loading').hidden = 1; $('app').hidden = 0;
+  $('nm').textContent = DATA.toko;
+  $('lg').textContent = (DATA.toko || 'M')[0].toUpperCase();
+  $('sc-meja').textContent = MEJA;
+  const info = DATA.info || {};
+  let sub = [];
+  if (info.wbuka && info.wtutup) sub.push(`<span>🕐 ${info.wbuka}-${info.wtutup}</span>`);
+  if (info.telp) sub.push(`<span>📞 ${info.telp}</span>`);
+  $('sub').innerHTML = sub.length ? sub.join('') : (info.alamat ? `<span>📍 ${E(info.alamat)}</span>` : '');
+  // Status buka/tutup
+  if (info.wbuka && info.wtutup) {
+    const now = new Date(), h = String(now.getHours()).padStart(2, '0'), m = String(now.getMinutes()).padStart(2, '0');
+    const cur = h + ':' + m;
+    const open = cur >= info.wbuka && cur <= info.wtutup;
+    if (!open) { $('hstat').classList.add('off'); $('hstat').innerHTML = '<div class="dot"></div>'; $('hstat').title = 'Restoran sedang tutup — pesanan tetap dikirim, tapi mungkin diproses saat buka'; }
+  }
+  $('meja').textContent = 'Meja ' + MEJA;
+  $('foot').innerHTML = (info.footer || 'Terima kasih telah berkunjung') + '<br><br><b style="color:var(--m)">MenuKu</b> · Menu Digital QR Code';
+  const cats = ['Semua', ...new Set(DATA.menu.map(m => m.kategori || 'Makanan'))];
+  const icoMap = { 'Semua': '🍴', 'Makanan': '🍽', 'Minuman': '🥤', 'Pembuka': '🥗', 'Penutup': '🍰', 'Snack': '🍟', 'Paket': '🍱' };
+  $('cats').innerHTML = cats.map(c => `<button class="chip ${c === curCat ? 'on' : ''}" onclick="setCat(${JSON.stringify(c).replace(/"/g,'&quot;')})"><span class="ico">${icoMap[c] || '🍴'}</span>${E(c)}</button>`).join('');
+  renderMenu();
 }
-function openM(id) {
-  S.edit = id || null; pickState = { raw: null, comp: null };
-  const m = id ? D().menu.find(x => x.id === id) : {};
-  sv('mn', m.nama || ''); sv('mk', m.kategori || 'Makanan'); sv('md', m.deskripsi || ''); sv('mh', m.harga); 
-  $('md').value = m.deskripsi || '';
-  setSt(m.status || 'tersedia');
-  $('mt').textContent = id ? 'Edit menu' : 'Menu baru';
-  $('upImg').hidden = 1; $('upHint').hidden = 0; $('upInfo').innerHTML = m.foto ? `<span class="m">Foto lama akan dipertahankan jika tidak pilih foto baru.</span>` : '';
-  if (m.foto) { $('upImg').src = m.foto; $('upImg').hidden = 0; $('upHint').hidden = 1; pickState.keepOld = m.foto; }
-  $('shm').classList.add('o'); setTimeout(() => $('mn').focus(), 260);
-}
-function setSt(s) { S.mst = s; $('st1').classList.toggle('on', s === 'tersedia'); $('st2').classList.toggle('on', s === 'habis'); }
-function cs() { document.querySelectorAll('.sh').forEach(x => x.classList.remove('o')); }
-function saveM() {
-  const nama = $('mn').value.trim(); if (!nama) return toast('Nama menu wajib', 1);
-  const harga = nv('mh'); if (!harga) return toast('Harga wajib diisi', 1);
-  const id = S.edit || uid('M');
-  const doSave = (foto) => {
-    const o = { id, nama, kategori: $('mk').value.trim() || 'Makanan', deskripsi: $('md').value.trim(), harga, foto, status: S.mst || 'tersedia' };
-    const i = D().menu.findIndex(x => x.id === id); i < 0 ? D().menu.unshift(o) : Object.assign(D().menu[i], o);
-    S.edit = null; all(); push({ a: 'ms', m: o }); toast('Menu tersimpan'); cs();
-  };
-  if (pickState.comp) {
-    // Upload foto terkompres ke ImageKit
-    const b = $('mt'); b.disabled = 0;
-    run(async () => {
-      const j = await api('upload', { data: pickState.comp.data, mime: pickState.comp.mime });
-      doSave(j.url);
+
+function setCat(c) { curCat = c; document.querySelectorAll('#cats .chip').forEach(b => b.classList.toggle('on', b.textContent.trim() === c.trim())); renderMenu(); }
+
+function renderMenu() {
+  const q = ($('q').value || '').toLowerCase();
+  const list = DATA.menu.filter(m => (curCat === 'Semua' || (m.kategori || 'Makanan') === curCat) && (m.nama + ' ' + (m.deskripsi || '') + ' ' + m.kategori).toLowerCase().includes(q));
+  const groups = {}; list.forEach(m => { const k = m.kategori || 'Makanan'; (groups[k] = groups[k] || []).push(m); });
+  let html = '';
+  if (!list.length) {
+    html = `<div class="empty"><div class="ico">${q ? '🔍' : '📭'}</div><p>${q ? 'Tidak ada menu yang cocok dengan pencarian "' + E(q) + '"' : 'Menu kategori ini belum tersedia.'}</p></div>`;
+  } else {
+    Object.keys(groups).sort().forEach(k => {
+      html += `<div class="sec-ttl">${E(k)} <small>${groups[k].length} menu</small></div>`;
+      html += groups[k].map(m => {
+        const qty = cart[m.id] || 0, habis = m.status === 'habis';
+        const ph = m.foto ? `<img src="${E(m.foto)}" alt="${E(m.nama)}" loading="lazy">` : `<span class="emo">${catEmoji(m.kategori)}</span>`;
+        return `<div class="mi ${habis ? 'z' : ''}">
+          <div class="ph">${ph}</div>
+          <div class="bd">
+            <div class="nm">${E(m.nama)} ${habis ? '<span class="st-badge">Habis</span>' : ''}</div>
+            ${m.deskripsi ? `<div class="ds">${E(m.deskripsi)}</div>` : '<div class="ds" style="visibility:hidden">.</div>'}
+            <div class="foot">
+              <div class="pr"><small>Rp</small>${(+m.harga).toLocaleString('id-ID')}</div>
+              <div class="add">
+                ${habis ? '' : qty > 0
+                  ? `<button class="mi-btn min" onclick="chg('${m.id}',-1)">−</button><span class="qty">${qty}</span><button class="mi-btn pls" onclick="chg('${m.id}',1)">+</button>`
+                  : `<button class="mi-btn add" onclick="chg('${m.id}',1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Tambah</button>`}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
     });
-  } else { doSave(pickState.keepOld || ''); }
+  }
+  $('menu-list').innerHTML = html;
 }
-function delM(id) { if (!confirm('Hapus menu ini?')) return; D().menu = D().menu.filter(x => x.id !== id); all(); push({ a: 'md', id }); toast('Menu dihapus'); }
 
-/* ============================================================
- * PESANAN — real-time, status BARU → DIPROSES → SELESAI
- * ============================================================ */
-const ST = { BARU: { l: 'Baru', c: 'new' }, DIPROSES: { l: 'Diproses', c: 'proc' }, SELESAI: { l: 'Selesai', c: 'done' }, BATAL: { l: 'Batal', c: 'cancel' } };
-function rPesanan() {
-  const T = D().pesanan || [];
-  // Hitung pesanan BARU untuk notifikasi
-  const baruCount = T.filter(t => t.status === 'BARU').length;
-  if (baruCount > S.lastCnt && S.lastCnt > 0) { beep(); ntf('Pesanan baru!', `Meja ${T.find(t => t.status === 'BARU').meja} memesan`); }
-  S.lastCnt = baruCount;
-  $('fn').textContent = baruCount + ' pesanan baru';
-  $('fab').style.display = (baruCount && S.tab !== 'pesanan') ? '' : 'none';
-  $('plive').textContent = 'Diperbarui ' + new Date().toLocaleTimeString('id-ID');
+function catEmoji(k) {
+  const m = { 'Makanan': '🍽', 'Minuman': '🥤', 'Pembuka': '🥗', 'Penutup': '🍰', 'Snack': '🍟', 'Paket': '🍱' };
+  return m[k] || '🍴';
+}
 
-  // Filter tabs
-  const counts = { BARU: 0, DIPROSES: 0, SELESAI: 0, BATAL: 0 };
-  T.forEach(t => counts[t.status] = (counts[t.status] || 0) + 1);
-  $('pft').innerHTML = [['BARU','Baru'],['DIPROSES','Diproses'],['SELESAI','Selesai'],['BATAL','Batal'],['ALL','Semua']].map(s => {
-    const cnt = s[0] === 'ALL' ? T.length : (counts[s[0]] || 0);
-    return `<button class="chip ${S.ps === s[0] ? 'on' : ''}" onclick="S.ps='${s[0]}';rPesanan()">${s[1]} (${cnt})</button>`;
+function chg(id, d) {
+  const m = DATA.menu.find(x => x.id === id); if (!m || m.status === 'habis') return;
+  const n = (cart[id] || 0) + d; if (n < 0) return;
+  n === 0 ? delete cart[id] : cart[id] = n;
+  renderMenu(); cartBar();
+}
+
+function cartBar() {
+  const ids = Object.keys(cart);
+  const tot = ids.reduce((a, id) => { const m = DATA.menu.find(x => x.id === id); return a + (m ? m.harga * cart[id] : 0); }, 0);
+  const cnt = ids.reduce((a, id) => a + cart[id], 0);
+  if (cnt > 0) {
+    $('cart-bar').hidden = 0;
+    requestAnimationFrame(() => $('cart-bar').classList.add('show'));
+    $('cb-n').textContent = cnt;
+    $('cb-t').textContent = R(tot);
+  } else {
+    $('cart-bar').classList.remove('show');
+    setTimeout(() => { if (!Object.keys(cart).length) $('cart-bar').hidden = 1; }, 300);
+  }
+}
+
+document.getElementById('cart-bar').addEventListener('click', openCart);
+
+function openCart() {
+  const ids = Object.keys(cart);
+  if (!ids.length) return toast('Keranjang masih kosong', 1);
+  $('cart-items').innerHTML = ids.map(id => {
+    const m = DATA.menu.find(x => x.id === id), q = cart[id];
+    const ph = m.foto ? `<img src="${E(m.foto)}" alt="">` : catEmoji(m.kategori);
+    return `<div class="ci">
+      <div class="ph-mini">${ph}</div>
+      <div class="nm">
+        <div class="ttl">${E(m.nama)}</div>
+        <div class="pr-mini">${R(m.harga)} / item</div>
+        <div class="qbtn">
+          <button class="min" onclick="chg('${id}',-1);openCart()">−</button>
+          <span class="q">${q}</span>
+          <button class="pls" onclick="chg('${id}',1);openCart()">+</button>
+        </div>
+      </div>
+      <div class="sub">${R(m.harga * q)}</div>
+    </div>`;
   }).join('');
-  const list = T.filter(t => S.ps === 'ALL' || t.status === S.ps);
-  $('plist').innerHTML = list.map(t => {
-    const its = parseIt(t.items), c = parseCat(t.catatan);
-    return `<div class="oc ${ST[t.status]?.c || ''}">
-      <div class="r jb"><div><b>Meja ${E(t.meja)}</b> <span class="s m">${E(t.tgl.slice(5, 16))}</span></div><b style="color:var(--or)">${R(t.total)}</b></div>
-      <div class="oi" style="margin:8px 0">${its.map(i => `<span><span class="q">${i.qty}×</span> ${E(i.nama)}${i.catatan ? ' <i class="m">('+E(i.catatan)+')</i>' : ''}</span>`).join(' · ')}</div>
-      ${c.pjk || c.svc ? `<div class="s m">Sub ${R(c.sub)} ${c.pjk ? '+ Pajak ' + R(c.pjk) : ''} ${c.svc ? '+ Service ' + R(c.svc) : ''}</div>` : ''}
-      ${t.no_pelanggan ? `<div class="s m">Pelanggan: ${E(t.no_pelanggan)}</div>` : ''}
-      <div class="r w" style="margin-top:8px">
-        <span class="bd ${ST[t.status]?.c === 'new' ? 'w' : ST[t.status]?.c === 'done' ? 'ok' : ST[t.status]?.c === 'cancel' ? 'x' : ''}">${ST[t.status]?.l || t.status}</span>
-        <span class="r w" style="margin-left:auto;gap:6px">
-          ${t.status === 'BARU' ? `<button class="b" style="padding:8px 14px" onclick="setSt2('${t.id}','DIPROSES')">Proses</button>` : ''}
-          ${t.status === 'DIPROSES' ? `<button class="b" style="padding:8px 14px;background:var(--ok)" onclick="setSt2('${t.id}','SELESAI')">Selesai</button>` : ''}
-          ${t.status === 'BARU' || t.status === 'DIPROSES' ? `<button class="g" style="color:var(--er)" onclick="setSt2('${t.id}','BATAL')">Batal</button>` : ''}
-        </span>
+  const info = DATA.info || {};
+  const sub = ids.reduce((a, id) => { const m = DATA.menu.find(x => x.id === id); return a + m.harga * cart[id]; }, 0);
+  const pjk = Math.round(sub * (+info.pajak || 0) / 100);
+  const svc = Math.round(sub * (+info.service || 0) / 100);
+  const tot = sub + pjk + svc;
+  let sumHtml = `<div class="sum">
+    <div class="sum-row"><span>Subtotal</span><span>${R(sub)}</span></div>
+    ${pjk ? `<div class="sum-row"><span>Pajak (${info.pajak || 0}%)</span><span>${R(pjk)}</span></div>` : ''}
+    ${svc ? `<div class="sum-row"><span>Biaya layanan (${info.service || 0}%)</span><span>${R(svc)}</span></div>` : ''}
+    <div class="sum-row total"><span>Total</span><span class="val">${R(tot)}</span></div>
+  </div>
+  <div class="sum-note">💵 Pembayaran di kasir (tunai / QRIS). Pesanan langsung dikirim ke dapur.</div>`;
+  $('cart-sum').innerHTML = sumHtml;
+  $('shc').classList.add('o');
+}
+
+function cs() { document.querySelectorAll('.sheet').forEach(x => x.classList.remove('o')); }
+
+async function kirim() {
+  const ids = Object.keys(cart); if (!ids.length) return;
+  const items = ids.map(id => ({ id, qty: cart[id] }));
+  const pel = $('catPel').value.trim();
+  const btn = $('kirimBtn'); btn.disabled = 1; btn.textContent = 'Mengirim…';
+  try {
+    const j = await api('order', { t: TOK, m: MEJA, items, pel });
+    cart = {}; lastOrd = j.id; renderMenu(); cartBar();
+    $('catPel').value = '';
+    cs();
+    showStatus(j.id, 'BARU', j.total);
+    toast('Pesanan terkirim ke dapur!');
+  } catch (e) {
+    toast(e.message, 1);
+    btn.disabled = 0; btn.textContent = 'Kirim pesanan ke dapur';
+  }
+}
+
+async function cekStatus() {
+  if (!lastOrd) return;
+  try {
+    const j = await api('orderStatus', { t: TOK, m: MEJA });
+    if (j.id && j.status && j.status !== lastStatus) {
+      lastStatus = j.status;
+      showStatus(j.id, j.status, j.total, j.status !== 'BARU');
+    }
+  } catch (e) {}
+}
+
+const ST_L = {
+  BARU: { l: 'Pesanan diterima', c: 'new', ico: '📝', desc: 'Pesanan Anda sudah sampai ke dapur. Mohon tunggu sebentar.' },
+  DIPROSES: { l: 'Sedang diproses', c: 'proc', ico: '👨‍🍳', desc: 'Dapur sedang menyiapkan pesanan Anda dengan penuh cinta.' },
+  SELESAI: { l: 'Pesanan siap', c: 'done', ico: '✅', desc: 'Pesanan Anda sudah siap! Silakan nikmati.' },
+  BATAL: { l: 'Dibatalkan', c: 'cancel', ico: '❌', desc: 'Pesanan dibatalkan. Hubungi kasir bila perlu.' }
+};
+const ST_ORDER = ['BARU', 'DIPROSES', 'SELESAI'];
+
+function showStatus(id, status, total, popup) {
+  const s = ST_L[status] || ST_L.BARU;
+  const card = $('status-card'); card.hidden = 0;
+  const curIdx = ST_ORDER.indexOf(status);
+  const stepsHtml = ST_ORDER.map((k, i) => {
+    const cls = i < curIdx ? 'done' : (i === curIdx ? 'on' : '');
+    return `<div class="st-step ${cls}"></div>`;
+  }).join('');
+  card.innerHTML = `
+    <div class="st-progress">${stepsHtml}</div>
+    <div class="st-row">
+      <div class="st-ico">${s.ico}</div>
+      <div class="st-body">
+        <div class="lbl">Status: <span class="st-badge2 ${s.c}">${s.l}</span></div>
+        <div class="desc">${s.desc}</div>
+        <div class="meta">No. pesanan: <b>${E(id)}</b>${total ? ' · Total <b>' + R(total) + '</b>' : ''}</div>
       </div>
     </div>`;
-  }).join('') || '<p class="m" style="text-align:center;padding:30px">Tidak ada pesanan</p>';
-}
-function parseIt(s) { try { return JSON.parse(s) || []; } catch (e) { return []; } }
-function parseCat(s) { try { return JSON.parse(s) || {}; } catch (e) { return {}; } }
-function setSt2(id, s) {
-  const t = D().pesanan.find(x => x.id === id); if (!t) return;
-  t.status = s; all(); push({ a: 'os', id, s });
-  toast('Pesanan meja ' + t.meja + ' → ' + (ST[s]?.l || s));
+  if (popup) {
+    $('status-content').innerHTML = `<div style="font-size:64px;margin-bottom:10px">${s.ico}</div><h2 class="sheet-title">${s.l}</h2><p class="sheet-sub" style="margin-bottom:6px">${s.desc}</p><p class="meta" style="font-size:12px;color:var(--m)">No. pesanan: <b>${E(id)}</b></p>`;
+    $('shs').classList.add('o');
+  }
 }
 
-/* ============================================================
- * MEJA — generate QR Code per meja
- * ============================================================ */
-function rMeja() {
-  const J = D().meja || [];
-  $('jn').value = Math.max(0, J.length);
-  $('jl').innerHTML = J.length ? `<div class="mc">` + J.sort((a, b) => a.nomor - b.nomor).map(j => `
-    <div class="mcard" style="text-align:center;cursor:pointer" onclick="openMeja(${j.nomor})">
-      <div class="ph" style="aspect-ratio:1"><div id="qrmini-${j.nomor}"></div></div>
-      <div class="bd"><div class="nm">Meja ${j.nomor}</div>${j.label ? `<div class="ds">${E(j.label)}</div>` : ''}</div>
-    </div>`).join('') + '</div>' : '<p class="m" style="text-align:center;padding:30px">Belum ada meja. Generate meja di atas untuk membuat QR Code.</p>';
-  // Render QR mini
-  J.forEach(j => renderQR($('qrmini-' + j.nomor), pubURL(j.nomor), 120));
-}
-function pubURL(meja) {
-  // Hapus query string & hash, lalu buang "index.html" jika ada
-  let base = location.href.split('?')[0].split('#')[0];
-  base = base.replace(/\/index\.html.*$/i, '/');
-  if (!base.endsWith('/')) base += '/';
-  return `${base}menu.html?t=${D().pub}&m=${meja}`;
-}
-// Library: qrcodejs (browser-ready, expose global QRCode)
-// API: new QRCode(element, { text, width, height, colorDark, colorLight, correctLevel })
-// qrcodejs membuat canvas (tersembunyi) + img (terlihat) di dalam element.
-function renderQR(el, text, size) {
-  if (!el || typeof QRCode === 'undefined') return;
-  el.innerHTML = '';
-  new QRCode(el, {
-    text: String(text),
-    width: size,
-    height: size,
-    colorDark: '#000000',
-    colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.M
-  });
-  // Pastikan img (output qrcodejs) tampil crisp
-  const im = el.querySelector('img');
-  if (im) { im.style.width = size + 'px'; im.style.height = size + 'px'; im.style.display = 'block'; im.style.margin = '0 auto'; }
-}
-// Helper: buat QR di elemen off-screen, kembalikan data URL PNG
-function makeQRDataUrl(text, size) {
-  const tmp = document.createElement('div');
-  tmp.style.cssText = 'position:absolute;left:-9999px;top:0;';
-  document.body.appendChild(tmp);
-  new QRCode(tmp, { text: String(text), width: size, height: size, colorDark: '#000', colorLight: '#fff', correctLevel: QRCode.CorrectLevel.M });
-  let url = '';
-  const cv = tmp.querySelector('canvas');
-  const im = tmp.querySelector('img');
-  if (cv) url = cv.toDataURL('image/png');
-  else if (im && im.src) url = im.src;
-  document.body.removeChild(tmp);
-  return url;
-}
-// Ambil data URL dari elemen #qrbig (modal meja)
-function qrDataUrl() {
-  const box = $('qrbig'); if (!box) return '';
-  const cv = box.querySelector('canvas');
-  const im = box.querySelector('img');
-  if (cv) return cv.toDataURL('image/png');
-  if (im && im.src) return im.src;
-  return '';
-}
-function jbGen() {
-  const n = +$('jn').value || 0; if (n < 1 || n > 200) return toast('Jumlah meja 1-200', 1);
-  push({ a: 'jb', n }); toast(`${n} meja dibuat. QR Code sedang dibuat…`);
-  setTimeout(pull, 600);
-}
-function addMeja() {
-  const eksis = (D().meja || []).map(j => j.nomor);
-  let next = 1; while (eksis.indexOf(next) >= 0) next++;
-  push({ a: 'js', j: { nomor: next, label: '' } });
-  toast('Meja ' + next + ' ditambahkan');
-  setTimeout(pull, 600);
-}
-function openMeja(nomor) {
-  S.curMeja = nomor; const j = (D().meja || []).find(x => x.nomor === nomor); if (!j) return;
-  $('jt').textContent = 'Meja ' + nomor; $('jl2').value = j.label || '';
-  $('qrBox').innerHTML = '<div id="qrbig"></div><div class="s m" style="margin-top:8px;text-align:center">Pindai QR ini dengan HP pelanggan untuk membuka menu</div>';
-  $('shj').classList.add('o');
-  setTimeout(() => renderQR($('qrbig'), pubURL(nomor), 280), 100);
-}
-function saveLabel() {
-  if (!S.curMeja) return; const j = (D().meja || []).find(x => x.nomor === S.curMeja); if (!j) return;
-  j.label = $('jl2').value; push({ a: 'js', j: { nomor: j.nomor, label: j.label } });
-}
-function delMeja() { if (!S.curMeja || !confirm('Hapus meja ini?')) return; push({ a: 'jd', nomor: S.curMeja }); cs(); toast('Meja dihapus'); setTimeout(pull, 600); }
-function qrDl() {
-  if (!S.curMeja) return;
-  const url = qrDataUrl(); if (!url) return toast('QR belum siap, tunggu sebentar', 1);
-  const a = document.createElement('a'); a.download = `qr-meja-${S.curMeja}.png`;
-  a.href = url; document.body.appendChild(a); a.click(); a.remove();
-  toast('QR Code Meja ' + S.curMeja + ' diunduh');
-}
-function qrPr() {
-  if (!S.curMeja) return;
-  const url = qrDataUrl(); if (!url) return toast('QR belum siap, tunggu sebentar', 1);
-  const w = window.open('', '_blank');
-  w.document.write(`<title>QR Meja ${S.curMeja} - ${E(D().toko)}</title><style>@page{margin:8mm}body{font-family:Arial,sans-serif;text-align:center;padding:14px}h1{font-size:22px;color:#1a1a1a;margin-bottom:4px}p.sub{color:#666;font-size:13px;margin-bottom:14px}img{width:240px;height:240px;border:1px solid #eee;border-radius:8px}p.note{margin-top:14px;font-size:12px;color:#888}</style><h1>${E(D().toko)}</h1><p class="sub">Meja ${S.curMeja}</p><img src="${url}"><p class="note">Pindai QR ini dengan kamera HP untuk melihat menu &amp; memesan langsung</p>`);
-  w.document.close(); setTimeout(() => { w.focus(); w.print(); }, 400);
-}
-function qrAll() {
-  const J = (D().meja || []).sort((a, b) => a.nomor - b.nomor); if (!J.length) return toast('Belum ada meja', 1);
-  toast(`${J.length} QR Code sedang diunduh...`);
-  J.forEach((j, i) => setTimeout(() => {
-    const url = makeQRDataUrl(pubURL(j.nomor), 300);
-    if (!url) return;
-    const a = document.createElement('a');
-    a.download = `qr-meja-${j.nomor}.png`; a.href = url;
-    document.body.appendChild(a); a.click(); a.remove();
-  }, i * 350));
-}
-function qrPrint() {
-  const J = (D().meja || []).sort((a, b) => a.nomor - b.nomor); if (!J.length) return toast('Belum ada meja', 1);
-  const w = window.open('', '_blank');
-  let html = `<!DOCTYPE html><html><head><title>QR Semua Meja - ${E(D().toko)}</title><style>@page{size:A4;margin:10mm}body{font-family:Arial,sans-serif;background:#fff;margin:0;padding:14px}.hdr{text-align:center;margin-bottom:14px;border-bottom:2px solid #0a8d6b;padding-bottom:10px}.hdr h1{font-size:20px;color:#0a8d6b;margin:0}.hdr p{font-size:12px;color:#666;margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.item{border:1.5px solid #eee;border-radius:12px;padding:12px;text-align:center;background:#fff}.item h2{font-size:16px;margin:0 0 4px;color:#1a1a1a}.item .lbl{font-size:11px;color:#888;margin-bottom:6px}.item img{width:140px;height:140px;display:block;margin:0 auto}.item .note{font-size:10px;color:#aaa;margin-top:6px}@media print{.item{break-inside:avoid}}</style></head><body>`;
-  html += `<div class="hdr"><h1>${E(D().toko)}</h1><p>QR Code Menu Digital - ${J.length} meja</p></div><div class="grid">`;
-  J.forEach(j => {
-    const url = makeQRDataUrl(pubURL(j.nomor), 140);
-    html += `<div class="item"><h2>Meja ${j.nomor}</h2>${j.label ? '<div class="lbl">' + E(j.label) + '</div>' : ''}<img src="${url}"><div class="note">Pindai untuk memesan</div></div>`;
-  });
-  html += '</div></body></html>';
-  w.document.write(html); w.document.close();
-  setTimeout(() => { w.focus(); w.print(); }, 600);
-}
-
-/* ============================================================
- * BERANDA
- * ============================================================ */
-function rHome() {
-  if (!S.d || !own() || S.tab !== 'home') return;
-  const td = new Date().toLocaleDateString('sv-SE');
-  const T = D().pesanan || [], today = T.filter(t => t.tgl.slice(0, 10) === td);
-  const baru = today.filter(t => t.status === 'BARU').length;
-  const proses = today.filter(t => t.status === 'DIPROSES').length;
-  const selesai = today.filter(t => t.status === 'SELESAI').length;
-  const om = today.filter(t => t.status !== 'BATAL').reduce((a, t) => a + t.total, 0);
-  $('hs').innerHTML = [['Pesanan baru', baru], ['Diproses', proses], ['Selesai', selesai], ['Omzet hari ini', R(om)]].map(c => `<div class="c"><span class="s m">${c[0]}</span><b>${c[1]}</b></div>`).join('');
-  $('hl').innerHTML = T.slice(0, 6).map(t => `<div class="oc ${ST[t.status]?.c || ''}" style="margin:0 0 8px"><div class="r jb"><b>Meja ${E(t.meja)}</b><span class="s m">${E(t.tgl.slice(11, 16))}</span></div><div class="s">${parseIt(t.items).map(i => i.qty + '× ' + i.nama).join(', ')}</div></div>`).join('') || '<p class="m">Belum ada pesanan</p>';
-  // Terlaris 7 hari
-  const tujuh = new Date(); tujuh.setDate(tujuh.getDate() - 7);
-  const tp = {}; T.filter(t => t.status !== 'BATAL' && new Date(t.tgl.replace(' ', 'T')) >= tujuh).forEach(t => parseIt(t.items).forEach(i => tp[i.nama] = (tp[i.nama] || 0) + i.qty));
-  $('ht').innerHTML = Object.entries(tp).sort((a, b) => b[1] - a[1]).slice(0, 6).map(e => `<div class="r jb"><span>${E(e[0])}</span><b>${e[1]}×</b></div>`).join('') || '<p class="m">Belum ada data</p>';
-}
-
-/* ============================================================
- * SETELAN
- * ============================================================ */
-function rSet() {
-  const s = st(); 
-  $('ul').innerHTML = (D().users || []).map(u => `<div class="r jb"><span class="k">${E(fWa(u.wa))} <span class="s m">· ${u.role === 'owner' ? 'Owner' : 'Kasir'}</span></span>${u.role === 'owner' ? '' : `<span class="r"><button class="g" onclick="rpU('${u.wa}')">Reset sandi</button><button class="g" style="color:var(--er)" onclick="delU('${u.wa}')">Hapus</button></span>`}</div>`).join('') || '<p class="m s">Belum ada akun kasir.</p>';
-  $('pul').value = pubURL(0).replace('&m=0', '');
-  if (S.sd) return;
-  $('sn').value = s.nama || D().toko; $('st').value = s.telp || ''; $('sa').value = s.alamat || '';
-  $('swb').value = s.wbuka || ''; $('swt').value = s.wtutup || ''; $('sf').value = s.footer || '';
-  $('sp').value = s.pajak || 0; $('ss').value = s.service || 0;
-  $('sik').value = s.imagekit_key || ''; $('siku').value = s.imagekit_url || '';
-  ikInfo();
-}
-function ikInfo() {
-  const key = $('sik').value.trim();
-  $('ikinfo').innerHTML = key ? '<b style="color:var(--ok)">Aktif:</b> foto menu akan disimpan di akun ImageKit Anda sendiri.' : '<b style="color:var(--wa)">Default:</b> foto menu memakai key default dari backend.';
-}
-$('sik').addEventListener('input', ikInfo);
-function saveSet() {
-  const s = { nama: $('sn').value, telp: $('st').value, alamat: $('sa').value, wbuka: $('swb').value, wtutup: $('swt').value, footer: $('sf').value, pajak: +$('sp').value || 0, service: +$('ss').value || 0, imagekit_key: $('sik').value.trim(), imagekit_url: $('siku').value.trim() };
-  S.sd = 0; D().setting = Object.assign({}, st(), s); $('tt').textContent = s.nama || D().toko;
-  push({ a: 'su', s }); toast('Pengaturan disimpan'); all();
-}
-$('v-set').addEventListener('input', e => { if (['sn','st','sa','swb','swt','sf','sp','ss','sik','siku'].includes(e.target.id)) S.sd = 1; });
-$('v-set').addEventListener('change', e => { if (['sn','st','sa','swb','swt','sf','sp','ss','sik','siku'].includes(e.target.id)) saveSet(); });
-function cpPub() { $('pul').select(); document.execCommand('copy'); toast('Tautan disalin'); }
-function openPub() { open(pubURL(0).replace('&m=0',''), '_blank'); }
-
-const one = op => api('sync', { ops: [op] }).then(r => { if (r.err && r.err.length) throw new Error(r.err[0]); return api('data'); }).then(setD);
-function addU() { run(async () => {
-  const w = normWa($('tu').value); if (!okWa(w)) return toast('No. WA kasir tidak valid', 1);
-  if (($('tp').value || '').length < 6) return toast('Sandi min 6 karakter', 1);
-  await one({ a: 'au', wa: w, p: $('tp').value }); $('tu').value = $('tp').value = ''; toast('Akun kasir ditambahkan');
-}); }
-function delU(wa) { if (confirm('Hapus akun ' + fWa(wa) + '?')) run(async () => { await one({ a: 'du', wa }); toast('Akun dihapus'); }); }
-function rpU(wa) { const p = prompt('Sandi baru untuk ' + fWa(wa) + ' (min 6):'); if (p === null) return; if (p.length < 6) return toast('Sandi min 6', 1); run(async () => { await one({ a: 'rp', wa, p }); toast('Sandi kasir direset'); }); }
-function chPass() { run(async () => { await api('changePass', { lama: $('c0').value, baru: $('c1').value }); $('c0').value = $('c1').value = ''; toast('Sandi diganti'); }); }
-function th() { document.documentElement.toggleAttribute('data-d', !!L('dk')); }
-function dark() { L('dk', !L('dk')); th(); }
-
-/* ============================================================
- * NOTIFIKASI & ALERT
- * ============================================================ */
-function bell() { const n = (D().pesanan || []).filter(t => t.status === 'BARU').length; $('bc').textContent = n > 9 ? '9+' : n; $('bc').hidden = !n; }
-function op() { $('nl').innerHTML = (D().pesanan || []).filter(t => t.status === 'BARU').slice(0, 10).map(t => `<div class="al" style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--l)"><span class="bd w">Baru</span><div class="f"><b>Meja ${E(t.meja)}</b><div class="s m">${E(t.tgl.slice(11, 16))} · ${R(t.total)}</div></div><button class="g" onclick="cs();go('pesanan')">Lihat</button></div>`).join('') || '<p class="m" style="text-align:center;padding:24px">Tidak ada pesanan baru.</p>'; $('shn').classList.add('o'); }
-function beep() { try { const a = new (window.AudioContext || window.webkitAudioContext)(), o = a.createOscillator(), g = a.createGain(); o.connect(g); g.connect(a.destination); o.frequency.value = 880; g.gain.value = .08; o.start(); o.stop(a.currentTime + .25); } catch (e) {} }
-function ntf(t, b) { try { if (navigator.vibrate) navigator.vibrate([120, 60, 120]); } catch (e) {} beep(); if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return; try { new Notification(t, { body: b }); } catch (e) {} }
-
-/* ============================================================
- * MULAI
- * ============================================================ */
-th(); $('ap').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doAuth(); } });
-['au','fpw','tu'].forEach(id => $(id).addEventListener('blur', () => { const d = $(id).value.replace(/\D/g, ''); if (d) $(id).value = fWa(d); }));
-if (S.tok) { const c = L('d'); if (c) { try { setD(c); } catch (e) {} } S.q.length ? flush() : pull(); if (!c) api('data').then(setD).catch(showAuth); }
-else showAuth();
-// Minta izin notifikasi saat owner login
-if (S.tok && typeof Notification !== 'undefined' && Notification.permission === 'default') setTimeout(() => Notification.requestPermission(), 3000);
+init();
 </script>
 </body>
 </html>
