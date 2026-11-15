@@ -3,133 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MenuKu — Buka Menu</title>
-<meta name="theme-color" content="#1f3a2e">
+<title>Buka menu restoran</title>
+<meta name="theme-color" content="#2a3df5">
 <style>
-:root{--cream:#faf6ef;--gold:#c9a55c;--green:#1f3a2e;--green2:#2d5440;--t:#1a1a1a;--m:#7a6f64;--er:#c0392b}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#1f3a2e 0%,#2d5440 60%,#15281f 100%);min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px;color:#fff;-webkit-font-smoothing:antialiased}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(201,165,92,.12) 0,transparent 50%),radial-gradient(circle at 80% 80%,rgba(201,165,92,.08) 0,transparent 40%);pointer-events:none}
-.wrap{position:relative;z-index:1;width:100%;max-width:420px;text-align:center}
-.logo{width:72px;height:72px;margin:0 auto 18px;background:linear-gradient(135deg,#c9a55c,#a88a3e);color:#1f3a2e;border-radius:18px;display:grid;place-items:center;font-family:Georgia,'Times New Roman',serif;font-size:36px;font-weight:700;box-shadow:0 12px 32px rgba(201,165,92,.35)}
-h1{font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;margin-bottom:6px;letter-spacing:-.01em}
-.sub{font-size:14px;opacity:.8;margin-bottom:28px;line-height:1.5}
-.card{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(201,165,92,.25);border-radius:18px;padding:24px 22px;margin-bottom:16px}
-.spin{width:40px;height:40px;border:3px solid rgba(201,165,92,.2);border-top-color:#c9a55c;border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 14px}
-@keyframes sp{to{transform:rotate(360deg)}}
-.card .msg{font-size:14px;line-height:1.5;color:rgba(255,255,255,.9)}
-.card .msg b{color:#c9a55c}
-.err .ico{font-size:48px;margin-bottom:10px}
-.err h2{font-family:Georgia,serif;font-size:20px;margin-bottom:8px}
-.err p{font-size:13px;opacity:.85;line-height:1.5;margin-bottom:16px}
-.input{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(201,165,92,.3);border-radius:12px;padding:14px 16px;font-size:16px;color:#fff;outline:0;text-align:center;letter-spacing:.05em;text-transform:lowercase;margin-bottom:10px}
-.input::placeholder{color:rgba(255,255,255,.4)}
-.input:focus{border-color:#c9a55c;background:rgba(255,255,255,.15)}
-.btn{display:block;width:100%;background:linear-gradient(135deg,#c9a55c,#a88a3e);color:#1f3a2e;font-weight:700;font-size:15px;padding:14px;border-radius:12px;border:0;cursor:pointer;box-shadow:0 6px 18px rgba(201,165,92,.3);transition:.15s;letter-spacing:.02em}
-.btn:active{transform:scale(.98)}
-.hint{font-size:11px;opacity:.6;margin-top:14px;line-height:1.5}
-.hint b{color:#c9a55c}
-.foot{margin-top:24px;font-size:11px;opacity:.5;letter-spacing:.05em}
-.foot b{font-family:Georgia,serif;color:#c9a55c}
+:root{--bg:#f3f4fb;--c:#fff;--ln:#dfe2f2;--t:#0e1233;--m:#5f6688;--a:#2a3df5;--y:#ffe45e;--er:#d8323c}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0e24;--c:#141938;--ln:#27305c;--t:#eef0ff;--m:#9aa2cf;--a:#7b88ff}}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font:15px/1.5 "Avenir Next","Segoe UI",Roboto,system-ui,sans-serif;background:#2a3df5;color:var(--t);min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top)) 20px max(20px,env(safe-area-inset-bottom))}
+input,button{font:inherit;color:inherit}[hidden]{display:none!important}
+.w{width:100%;max-width:400px}
+.top{display:flex;align-items:center;gap:12px;color:#fff;margin-bottom:16px}
+.lg{width:46px;height:46px;border-radius:14px;background:var(--y);color:#0e1233;display:grid;place-items:center;font-weight:900;font-size:24px;flex:none}
+.top b{font-size:22px;font-weight:800;letter-spacing:-.02em;display:block;line-height:1.1}.top span{font-size:13px;opacity:.85}
+.tk{background:var(--c);border-radius:6px 6px 20px 20px;padding:24px 22px;border-top:6px solid var(--y)}
+.tk h1{font-size:20px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.tk p{color:var(--m);font-size:14px;margin-top:6px}
+.tk hr{border:0;border-top:2px dashed var(--ln);margin:18px 0}
+.lb{font-weight:700;font-size:13px;margin-bottom:6px;display:block}
+.i{width:100%;background:var(--bg);border:1.5px solid var(--ln);border-radius:10px;padding:12px 14px;font-size:16px}
+.i:focus{outline:3px solid color-mix(in srgb,var(--a) 35%,transparent);border-color:var(--a)}
+.r{display:flex;gap:10px}.r>div:first-child{flex:1;min-width:0}.r>div:last-child{width:110px}
+.b{display:block;width:100%;background:var(--a);color:#fff;border:0;border-radius:99px;padding:14px;font-weight:800;font-size:16px;cursor:pointer;margin-top:16px}
+.b:disabled{opacity:.5}
+.er{background:#fde1e3;color:var(--er);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;margin-bottom:14px}
+.sp{width:36px;height:36px;border:4px solid var(--ln);border-top-color:var(--a);border-radius:50%;animation:s .9s linear infinite;margin:6px auto 14px}
+@keyframes s{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.sp{animation-duration:3s}}
+.ft{color:#fff;opacity:.75;font-size:12px;text-align:center;margin-top:16px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="logo">M</div>
-  <h1>MenuKu</h1>
-  <p class="sub">Menu Digital Restoran</p>
+<div class="w">
+ <div class="top"><div class="lg">M</div><div><b>MenuKu</b><span>Menu digital restoran</span></div></div>
 
-  <div id="loading" class="card">
-    <div class="spin"></div>
-    <div class="msg" id="load-msg">Membuka menu…</div>
+ <div class="tk" id="ld">
+  <div class="sp" role="status" aria-label="Memuat"></div>
+  <h1 id="lm" style="text-align:center">Membuka menu…</h1>
+ </div>
+
+ <div class="tk" id="fm" hidden>
+  <h1 id="ft">Buka menu restoran</h1>
+  <p id="fs">Masukkan kode restoran dan nomor meja yang tertera di meja Anda.</p>
+  <hr>
+  <div id="fe" class="er" hidden role="alert"></div>
+  <div class="r">
+   <div><label class="lb" for="ks">Kode restoran</label><input id="ks" class="i" placeholder="mis. berkah" autocapitalize="off" autocomplete="off" spellcheck="false" maxlength="20" enterkeyhint="next"></div>
+   <div><label class="lb" for="km">Meja</label><input id="km" class="i" type="number" inputmode="numeric" min="1" max="999" placeholder="1" enterkeyhint="go"></div>
   </div>
+  <button id="kb" class="b" type="button" onclick="manual()">Buka menu</button>
+ </div>
 
-  <div id="err" class="card err" hidden>
-    <div class="ico">🍽</div>
-    <h2 id="err-t">Menu tidak ditemukan</h2>
-    <p id="err-m">Periksa kembali link atau ketik kode restoran Anda di bawah.</p>
-    <input id="manual" class="input" placeholder="kode-restoran-meja" autocapitalize="off" spellcheck="false">
-    <button class="btn" onclick="manualGo()">Buka Menu</button>
-    <div class="hint">Format: <b>kode</b> + nomor meja. Contoh: <b>berkah1</b> untuk restoran "berkah" meja 1.</div>
-  </div>
-
-  <div class="foot">Powered by <b>MenuKu</b></div>
+ <p class="ft">Didukung MenuKu</p>
 </div>
 
 <script>
-const API = 'https://script.google.com/macros/s/AKfycbz3yedhl9M8UheDo8C3aMqyNKr-piXrghBJURh2r5Ut8QyDvymGERmWG1yHU9NcBKg/exec';
-const $ = i => document.getElementById(i);
+const API='https://script.google.com/macros/s/AKfycbz3yedhl9M8UheDo8C3aMqyNKr-piXrghBJURh2r5Ut8QyDvymGERmWG1yHU9NcBKg/exec';
+const $=i=>document.getElementById(i);
+const clean=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
 
-async function api(action, b = {}) {
-  let r, t;
-  try { r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...b }) }); t = await r.text(); }
-  catch (e) { throw new Error('Tidak ada koneksi internet'); }
-  let j; try { j = JSON.parse(t); } catch (e) { throw new Error('Server tidak merespons'); }
-  if (!j.ok) throw new Error(j.error || 'Terjadi kesalahan');
-  return j;
-}
+async function api(action,b={}){
+ let r,t;
+ try{r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,...b})});t=await r.text()}
+ catch(e){const x=new Error('Tidak ada koneksi internet. Periksa sinyal Anda lalu coba lagi.');x.net=1;throw x}
+ let j;try{j=JSON.parse(t)}catch(e){const x=new Error('Server tidak merespons. Hubungi kasir.');x.net=1;throw x}
+ if(!j.ok)throw new Error(j.error||'Terjadi kesalahan');
+ return j}
 
-// Baca hash: #berkah1 → slug="berkah", meja=1
-function parseHash() {
-  let h = location.hash.replace(/^#/, '').trim().toLowerCase();
-  if (!h) return { slug: '', meja: 0 };
-  // Pisahkan slug (huruf) dari nomor meja (angka di akhir)
-  const m = h.match(/^([a-z]+)(\d+)$/);
-  if (m) return { slug: m[1], meja: +m[2] };
-  return { slug: h.replace(/[^a-z]/g, ''), meja: 0 };
-}
+/* alamat menu.html: folder yang sama dengan go.html (dengan atau tanpa .html) */
+function menuURL(pub,meja){
+ let b=location.href.split('?')[0].split('#')[0].replace(/\/go(\.html)?$/i,'/');
+ if(!b.endsWith('/'))b+='/';
+ return `${b}menu.html?t=${encodeURIComponent(pub)}&m=${meja}`}
 
-function menuURL(pub, meja) {
-  let base = location.href.split('?')[0].split('#')[0];
-  base = base.replace(/\/go\.html.*$/i, '/');
-  if (!base.endsWith('/')) base += '/';
-  return `${base}menu.html?t=${pub}&m=${meja}`;
-}
+/* "berkah12" bisa berarti berkah + meja 12, atau berkah1 + meja 2 (jika slug memuat angka).
+ * Kembalikan semua kemungkinan, dari meja terpanjang (paling umum) ke terpendek. */
+function cands(h){
+ const m=h.match(/^(.*?)(\d+)$/);if(!m)return[];
+ const pre=m[1],d=m[2],out=[];
+ for(let k=Math.min(d.length,3);k>=1;k--){
+  const slug=pre+d.slice(0,d.length-k),meja=d.slice(d.length-k);
+  if(slug.length>=3&&slug.length<=20&&meja[0]!=='0')out.push([slug,+meja])}
+ return out}
 
-async function go() {
-  if (API.startsWith('GANTI')) {
-    showErr('Backend belum dikonfigurasi', 'Pemilik restoran belum mengisi URL API. Hubungi kasir.');
-    return;
-  }
-  const { slug, meja } = parseHash();
-  if (!slug) {
-    showErr('Kode restoran kosong', 'Buka link dari QR Code di meja Anda, atau ketik kode restoran + nomor meja di bawah.');
-    return;
-  }
-  if (!meja) {
-    showErr('Nomor meja tidak ditemukan', 'Link harus berisi nomor meja. Format: kode-restoran + nomor-meja, contoh: "berkah1".');
-    return;
-  }
-  $('load-msg').innerHTML = `Mencari restoran <b>${slug}</b>, meja ${meja}…`;
-  try {
-    const j = await api('findBySlug', { slug });
-    $('load-msg').innerHTML = `Ditemukan: <b>${j.nama}</b>. Mengarahkan ke menu…`;
-    setTimeout(() => location.replace(menuURL(j.pub, meja)), 600);
-  } catch (e) {
-    showErr('Restoran tidak ditemukan', e.message + ' Periksa kembali kode, atau ketik manual di bawah.');
-  }
-}
+function view(s,msg){
+ $('ld').hidden=s!=='ld';$('fm').hidden=s!=='fm';
+ if(s==='ld'&&msg)$('lm').textContent=msg}
+function formErr(title,sub,err){
+ view('fm');$('ft').textContent=title;$('fs').textContent=sub;
+ $('fe').hidden=!err;$('fe').textContent=err||'';$('kb').disabled=false;$('kb').textContent='Buka menu'}
 
-function showErr(title, msg) {
-  $('loading').hidden = 1;
-  $('err').hidden = 0;
-  $('err-t').textContent = title;
-  $('err-m').textContent = msg;
-}
+async function buka(slug,meja){
+ view('ld','Mencari '+slug+', meja '+meja+'…');
+ const j=await api('findBySlug',{slug});
+ try{localStorage.setItem('mk_last',JSON.stringify({s:slug}))}catch(e){}
+ view('ld','Membuka menu '+j.nama+'…');
+ location.replace(menuURL(j.pub,meja))}
 
-function manualGo() {
-  const val = $('manual').value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-  if (!val) return;
-  location.hash = '#' + val;
-  $('loading').hidden = 0;
-  $('err').hidden = 1;
-  $('load-msg').textContent = 'Membuka menu…';
-  go();
-}
+async function fromHash(){
+ if(API.startsWith('GANTI'))return formErr('Backend belum diatur','Pemilik restoran belum mengisi URL API. Hubungi kasir.','');
+ const h=clean(location.hash);
+ if(!h)return formErr('Buka menu restoran','Masukkan kode restoran dan nomor meja yang tertera di meja Anda.','');
+ const C=cands(h);
+ if(!C.length)return formErr('Nomor meja belum ada','Tautan harus memuat kode restoran dan nomor meja, mis. berkah1. Isi di bawah.','');
+ for(const [s,m] of C){
+  try{await buka(s,m);return}
+  catch(e){if(e.net)return formErr('Gagal terhubung','Menu belum bisa dibuka.',e.message)}}
+ formErr('Restoran tidak ditemukan','Periksa kode restoran dan nomor meja, lalu coba lagi.','Kode "'+h+'" tidak cocok dengan restoran mana pun.')}
 
-$('manual').addEventListener('keydown', e => { if (e.key === 'Enter') manualGo(); });
+async function manual(){
+ const s=clean($('ks').value),m=Math.floor(+$('km').value);
+ if(s.length<3)return formErr('Buka menu restoran','Masukkan kode restoran dan nomor meja yang tertera di meja Anda.','Kode restoran minimal 3 huruf atau angka.');
+ if(!(m>=1&&m<=999))return formErr('Buka menu restoran','Masukkan kode restoran dan nomor meja yang tertera di meja Anda.','Nomor meja harus 1 sampai 999.');
+ $('kb').disabled=true;$('kb').textContent='Mencari…';
+ try{history.replaceState(null,'','#'+s+m);await buka(s,m)}
+ catch(e){formErr('Buka menu restoran','Masukkan kode restoran dan nomor meja yang tertera di meja Anda.',e.net?e.message:'Restoran "'+s+'" tidak ditemukan. Periksa kodenya.')}}
 
-go();
+$('ks').addEventListener('input',e=>e.target.value=clean(e.target.value));
+$('ks').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('km').focus()}});
+$('km').addEventListener('keydown',e=>{if(e.key==='Enter')manual()});
+addEventListener('hashchange',fromHash);
+try{const l=JSON.parse(localStorage.getItem('mk_last')||'null');if(l&&l.s)$('ks').value=l.s}catch(e){}
+fromHash();
 </script>
 </body>
 </html>
