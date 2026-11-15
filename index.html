@@ -212,7 +212,7 @@ main{padding:18px 18px 40px;max-width:1200px;margin:auto}
 </div></div></div>
 
 <div id="toast" hidden></div>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
 /* ============================================================
  * MenuKu — Dashboard Owner/Kasir
@@ -479,14 +479,52 @@ function rMeja() {
   J.forEach(j => renderQR($('qrmini-' + j.nomor), pubURL(j.nomor), 120));
 }
 function pubURL(meja) {
+  // Hapus query string & hash, lalu buang "index.html" jika ada
   let base = location.href.split('?')[0].split('#')[0];
   base = base.replace(/\/index\.html.*$/i, '/');
   if (!base.endsWith('/')) base += '/';
   return `${base}menu.html?t=${D().pub}&m=${meja}`;
 }
+// Library: qrcodejs (browser-ready, expose global QRCode)
+// API: new QRCode(element, { text, width, height, colorDark, colorLight, correctLevel })
+// qrcodejs membuat canvas (tersembunyi) + img (terlihat) di dalam element.
 function renderQR(el, text, size) {
-  if (!el || !window.QRCode) return;
-  try { el.innerHTML = ''; window.QRCode.toCanvas(el, text, { width: size, margin: 1, color: { dark: '#000', light: '#fff' } }, () => {}); } catch (e) {}
+  if (!el || typeof QRCode === 'undefined') return;
+  el.innerHTML = '';
+  new QRCode(el, {
+    text: String(text),
+    width: size,
+    height: size,
+    colorDark: '#000000',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+  // Pastikan img (output qrcodejs) tampil crisp
+  const im = el.querySelector('img');
+  if (im) { im.style.width = size + 'px'; im.style.height = size + 'px'; im.style.display = 'block'; im.style.margin = '0 auto'; }
+}
+// Helper: buat QR di elemen off-screen, kembalikan data URL PNG
+function makeQRDataUrl(text, size) {
+  const tmp = document.createElement('div');
+  tmp.style.cssText = 'position:absolute;left:-9999px;top:0;';
+  document.body.appendChild(tmp);
+  new QRCode(tmp, { text: String(text), width: size, height: size, colorDark: '#000', colorLight: '#fff', correctLevel: QRCode.CorrectLevel.M });
+  let url = '';
+  const cv = tmp.querySelector('canvas');
+  const im = tmp.querySelector('img');
+  if (cv) url = cv.toDataURL('image/png');
+  else if (im && im.src) url = im.src;
+  document.body.removeChild(tmp);
+  return url;
+}
+// Ambil data URL dari elemen #qrbig (modal meja)
+function qrDataUrl() {
+  const box = $('qrbig'); if (!box) return '';
+  const cv = box.querySelector('canvas');
+  const im = box.querySelector('img');
+  if (cv) return cv.toDataURL('image/png');
+  if (im && im.src) return im.src;
+  return '';
 }
 function jbGen() {
   const n = +$('jn').value || 0; if (n < 1 || n > 200) return toast('Jumlah meja 1-200', 1);
@@ -514,40 +552,41 @@ function saveLabel() {
 function delMeja() { if (!S.curMeja || !confirm('Hapus meja ini?')) return; push({ a: 'jd', nomor: S.curMeja }); cs(); toast('Meja dihapus'); setTimeout(pull, 600); }
 function qrDl() {
   if (!S.curMeja) return;
-  const cv = $('qrbig').querySelector('canvas'); if (!cv) return;
+  const url = qrDataUrl(); if (!url) return toast('QR belum siap, tunggu sebentar', 1);
   const a = document.createElement('a'); a.download = `qr-meja-${S.curMeja}.png`;
-  a.href = cv.toDataURL('image/png'); a.click(); toast('QR Code diunduh');
+  a.href = url; document.body.appendChild(a); a.click(); a.remove();
+  toast('QR Code Meja ' + S.curMeja + ' diunduh');
 }
 function qrPr() {
-  if (!S.curMeja) return; const cv = $('qrbig').querySelector('canvas'); if (!cv) return;
+  if (!S.curMeja) return;
+  const url = qrDataUrl(); if (!url) return toast('QR belum siap, tunggu sebentar', 1);
   const w = window.open('', '_blank');
-  w.document.write(`<title>QR Meja ${S.curMeja}</title><style>@page{margin:5mm}body{font-family:Arial;text-align:center}h1{font-size:24px}img{width:200px}</style><h1>${E(D().toko)} — Meja ${S.curMeja}</h1><img src="${cv.toDataURL('image/png')}"><p>Pindai untuk melihat menu &amp; memesan</p>`);
-  w.document.close(); setTimeout(() => w.print(), 300);
+  w.document.write(`<title>QR Meja ${S.curMeja} - ${E(D().toko)}</title><style>@page{margin:8mm}body{font-family:Arial,sans-serif;text-align:center;padding:14px}h1{font-size:22px;color:#1a1a1a;margin-bottom:4px}p.sub{color:#666;font-size:13px;margin-bottom:14px}img{width:240px;height:240px;border:1px solid #eee;border-radius:8px}p.note{margin-top:14px;font-size:12px;color:#888}</style><h1>${E(D().toko)}</h1><p class="sub">Meja ${S.curMeja}</p><img src="${url}"><p class="note">Pindai QR ini dengan kamera HP untuk melihat menu &amp; memesan langsung</p>`);
+  w.document.close(); setTimeout(() => { w.focus(); w.print(); }, 400);
 }
 function qrAll() {
-  const J = D().meja || []; if (!J.length) return toast('Belum ada meja', 1);
+  const J = (D().meja || []).sort((a, b) => a.nomor - b.nomor); if (!J.length) return toast('Belum ada meja', 1);
+  toast(`${J.length} QR Code sedang diunduh...`);
   J.forEach((j, i) => setTimeout(() => {
-    const cv = document.createElement('canvas');
-    window.QRCode.toCanvas(cv, pubURL(j.nomor), { width: 280, margin: 1 }, () => {
-      const a = document.createElement('a'); a.download = `qr-meja-${j.nomor}.png`; a.href = cv.toDataURL('image/png'); a.click();
-    });
-  }, i * 400));
-  toast(`${J.length} QR Code akan terunduh`);
+    const url = makeQRDataUrl(pubURL(j.nomor), 300);
+    if (!url) return;
+    const a = document.createElement('a');
+    a.download = `qr-meja-${j.nomor}.png`; a.href = url;
+    document.body.appendChild(a); a.click(); a.remove();
+  }, i * 350));
 }
 function qrPrint() {
-  const J = D().meja || []; if (!J.length) return toast('Belum ada meja', 1);
+  const J = (D().meja || []).sort((a, b) => a.nomor - b.nomor); if (!J.length) return toast('Belum ada meja', 1);
   const w = window.open('', '_blank');
-  let html = `<title>QR Semua Meja — ${E(D().toko)}</title><style>@page{size:A4;margin:10mm}body{font-family:Arial}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center}.item{border:1px solid #ccc;border-radius:10px;padding:14px}h2{font-size:18px;margin:0 0 4px}img{width:160px}</style><body>`;
-  html += `<div class="grid">`;
-  let done = 0;
+  let html = `<!DOCTYPE html><html><head><title>QR Semua Meja - ${E(D().toko)}</title><style>@page{size:A4;margin:10mm}body{font-family:Arial,sans-serif;background:#fff;margin:0;padding:14px}.hdr{text-align:center;margin-bottom:14px;border-bottom:2px solid #0a8d6b;padding-bottom:10px}.hdr h1{font-size:20px;color:#0a8d6b;margin:0}.hdr p{font-size:12px;color:#666;margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.item{border:1.5px solid #eee;border-radius:12px;padding:12px;text-align:center;background:#fff}.item h2{font-size:16px;margin:0 0 4px;color:#1a1a1a}.item .lbl{font-size:11px;color:#888;margin-bottom:6px}.item img{width:140px;height:140px;display:block;margin:0 auto}.item .note{font-size:10px;color:#aaa;margin-top:6px}@media print{.item{break-inside:avoid}}</style></head><body>`;
+  html += `<div class="hdr"><h1>${E(D().toko)}</h1><p>QR Code Menu Digital - ${J.length} meja</p></div><div class="grid">`;
   J.forEach(j => {
-    const cv = document.createElement('canvas');
-    window.QRCode.toCanvas(cv, pubURL(j.nomor), { width: 160, margin: 1 }, () => {
-      html += `<div class="item"><h2>Meja ${j.nomor}</h2>${j.label ? '<p>' + E(j.label) + '</p>' : ''}<img src="${cv.toDataURL('image/png')}"></div>`;
-      done++;
-      if (done === J.length) { html += '</div>'; w.document.write(html); w.document.close(); setTimeout(() => w.print(), 400); }
-    });
+    const url = makeQRDataUrl(pubURL(j.nomor), 140);
+    html += `<div class="item"><h2>Meja ${j.nomor}</h2>${j.label ? '<div class="lbl">' + E(j.label) + '</div>' : ''}<img src="${url}"><div class="note">Pindai untuk memesan</div></div>`;
   });
+  html += '</div></body></html>';
+  w.document.write(html); w.document.close();
+  setTimeout(() => { w.focus(); w.print(); }, 600);
 }
 
 /* ============================================================
