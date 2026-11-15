@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MenuKu — Menu Digital</title>
+<meta name="theme-color" content="#0a8d6b">
+<style>
+:root{--bg:#f2f6fa;--c:#fff;--l:#e3e9f0;--t:#112032;--m:#687787;--p:#0a8d6b;--pt:#e6f6ef;--or:#ff5e1f;--ok:#0f9d6b;--er:#d93b3b;--wa:#e8780a;--sh:0 2px 8px rgba(17,32,50,.06);--sh2:0 8px 24px rgba(17,32,50,.12)}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font:15px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;padding-bottom:80px}
+input,select,textarea,button{font:inherit;color:inherit}[hidden]{display:none!important}
+.b{background:var(--p);color:#fff;border:0;border-radius:12px;padding:12px 20px;font-weight:600;cursor:pointer;transition:.1s}.b:active{transform:scale(.97)}
+.b.o{background:var(--or)}.b.er{background:var(--er)}
+.g{background:var(--c);border:1.5px solid var(--l);border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;color:var(--p)}
+.r{display:flex;gap:8px;align-items:center}.w{flex-wrap:wrap}.f{flex:1;min-width:0}.jb{justify-content:space-between}
+.col{display:flex;flex-direction:column;gap:12px}.m{color:var(--m)}.s{font-size:12px}.k{font-weight:600}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#0a8d6b,#076b50);color:#fff;padding:max(14px,env(safe-area-inset-top)) 18px 14px;box-shadow:0 2px 12px rgba(10,141,107,.25)}
+.hdr-top{display:flex;gap:12px;align-items:center}
+.hdr-lg{width:44px;height:44px;background:#fff;color:#0a8d6b;border-radius:12px;display:grid;place-items:center;font-size:22px;font-weight:800;flex:none}
+.hdr-nm{font-size:18px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hdr-sub{font-size:12px;opacity:.85;margin-top:1px}
+.hdr-meja{background:rgba(255,255,255,.18);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-top:6px;width:fit-content}
+#cats{position:sticky;top:0;z-index:15;display:flex;gap:6px;overflow-x:auto;background:var(--c);border-bottom:1px solid var(--l);padding:10px 14px;scrollbar-width:none}#cats::-webkit-scrollbar{display:none}
+.chip{border:1.5px solid var(--l);background:var(--c);border-radius:99px;padding:8px 16px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;scroll-snap-align:start}
+.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
+main{padding:14px;max-width:800px;margin:auto}
+.sec-ttl{font-weight:700;font-size:17px;margin:18px 0 10px;color:var(--t)}
+.ml{display:flex;flex-direction:column;gap:10px}
+.mi{display:flex;gap:12px;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:12px;box-shadow:var(--sh);align-items:stretch;overflow:hidden}
+.mi.z{opacity:.5}
+.mi .ph{width:96px;height:96px;border-radius:12px;background:var(--pt);display:grid;place-items:center;font-size:32px;color:var(--p);flex:none;overflow:hidden}
+.mi .ph img{width:100%;height:100%;object-fit:cover}
+.mi .bd{flex:1;min-width:0;display:flex;flex-direction:column}
+.mi .nm{font-weight:700;font-size:15px;line-height:1.3}
+.mi .ds{font-size:12px;color:var(--m);line-height:1.4;margin:3px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mi .pr{font-weight:800;color:var(--or);font-size:16px;margin-top:auto}
+.mi .add{display:flex;align-items:center;gap:6px;margin-top:6px}
+.mi .add .g{padding:6px 10px;font-size:14px}
+.mi .qty{font-weight:800;font-size:16px;min-width:24px;text-align:center}
+#cart-bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--c);border-top:1px solid var(--l);padding:12px 14px max(12px,env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(17,32,50,.08);transform:translateY(100%);transition:transform .25s}
+#cart-bar.show{transform:none}
+#cart-bar .r{justify-content:space-between}
+#cart-bar .info{flex:1;min-width:0}
+#cart-bar .info b{font-size:16px}
+#cart-bar .info .s{color:var(--m)}
+.sh{position:fixed;inset:0;z-index:60;background:rgba(8,20,35,.55);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.sh.o{opacity:1;pointer-events:auto}
+.sh>div{background:var(--bg);width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:10px 20px max(20px,env(safe-area-inset-bottom));transform:translateY(40px);transition:transform .25s}.sh.o>div{transform:none}
+.gr{width:40px;height:4px;border-radius:9px;background:var(--l);margin:0 auto 14px}
+.ci{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--l)}.ci:last-child{border:0}
+.ci .nm{font-weight:600;flex:1;min-width:0}.ci .nm .ds{font-size:11px;color:var(--m);margin-top:2px}
+.ci .qbtn{display:flex;align-items:center;gap:6px}
+.ci .qbtn button{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--l);background:var(--c);cursor:pointer;font-weight:700;color:var(--p);font-size:16px;padding:0}
+.ci .qbtn .q{font-weight:800;min-width:22px;text-align:center}
+.ci .sub{font-weight:700;color:var(--or)}
+#toast{position:fixed;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:300;color:#fff;padding:12px 20px;border-radius:12px;font-weight:600;max-width:90vw;box-shadow:var(--sh2);text-align:center}
+.st-badge{display:inline-block;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:700;background:var(--pt);color:var(--p)}.st-badge.proc{background:#fff1e6;color:var(--wa)}.st-badge.done{background:#e6f6ef;color:var(--ok)}.st-badge.new{background:#fff4e5;color:var(--or)}
+.empty{text-align:center;padding:60px 20px;color:var(--m)}
+.empty .ico{font-size:48px;margin-bottom:10px}
+.err-screen{min-height:100vh;display:grid;place-items:center;padding:30px;text-align:center;background:radial-gradient(circle at 50% 30%,#e6f6ef,transparent),var(--bg)}
+.err-card{background:var(--c);border-radius:20px;padding:30px 24px;box-shadow:var(--sh2);max-width:380px}
+.err-card .ico{font-size:48px;margin-bottom:10px}
+.err-card h1{font-size:20px;margin-bottom:8px}
+.err-card p{color:var(--m);font-size:14px;line-height:1.5;margin-bottom:16px}
+@media(max-width:600px){.mi .ph{width:84px;height:84px;font-size:26px}}
+</style>
+</head>
+<body>
+
+<div id="loading" style="min-height:100vh;display:grid;place-items:center;color:var(--m);flex-direction:column;gap:10px">
+  <div style="width:48px;height:48px;border:4px solid var(--l);border-top-color:var(--p);border-radius:50%;animation:sp 1s linear infinite"></div>
+  <p style="font-weight:600">Memuat menu…</p>
+  <style>@keyframes sp{to{transform:rotate(360deg)}}</style>
+</div>
+
+<div id="err" class="err-screen" hidden>
+  <div class="err-card">
+    <div class="ico">🍽</div>
+    <h1 id="err-t">Menu tidak tersedia</h1>
+    <p id="err-m">Periksa QR Code atau hubungi kasir.</p>
+    <button class="b" onclick="location.reload()">Coba lagi</button>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header>
+    <div class="hdr-top">
+      <div class="hdr-lg" id="lg">M</div>
+      <div style="flex:1;min-width:0">
+        <div class="hdr-nm" id="nm"></div>
+        <div class="hdr-sub" id="sub"></div>
+        <div class="hdr-meja"><span>📍</span> <span id="meja">Meja ?</span></div>
+      </div>
+    </div>
+  </header>
+  <div id="cats"></div>
+  <main>
+    <div id="menu-list" class="ml"></div>
+    <div style="height:30px"></div>
+    <div id="status-card" class="ci" style="background:var(--c);border:1px solid var(--l);border-radius:14px;padding:14px;margin-top:14px" hidden></div>
+    <div class="s m" style="text-align:center;padding:14px" id="foot"></div>
+  </main>
+  <div id="cart-bar" hidden>
+    <div class="r">
+      <div class="info"><div class="s" id="cb-n">0 item</div><b id="cb-t">Rp 0</b></div>
+      <button class="b o" onclick="openCart()">Lihat pesanan</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CART -->
+<div id="shc" class="sh" onclick="if(event.target===this)cs()"><div>
+  <div class="gr"></div>
+  <div class="r jb"><b style="font-size:18px">Pesanan Anda</b><button class="g" onclick="cs()">Tutup</button></div>
+  <div id="cart-items" style="margin-top:8px"></div>
+  <div id="cart-sum" style="margin-top:10px"></div>
+  <input id="catPel" class="g" style="width:100%;margin-top:10px;border:1.5px solid var(--l);border-radius:12px;padding:12px;font-size:15px" placeholder="Nama / catatan untuk kasir (opsional)">
+  <button class="b o" style="padding:14px;width:100%;margin-top:12px" onclick="kirim()">Kirim pesanan</button>
+</div></div>
+
+<!-- MODAL STATUS -->
+<div id="shs" class="sh" onclick="if(event.target===this)cs()"><div style="text-align:center">
+  <div class="gr"></div>
+  <div id="status-content"></div>
+  <button class="g" style="margin-top:14px" onclick="cs()">Tutup</button>
+</div></div>
+
+<div id="toast" hidden></div>
+
+<script>
+/* ============================================================
+ * MenuKu — Halaman Pelanggan (menu.html)
+ * URL: menu.html?t=TOKEN&m=NOMOR_MEJA
+ * ============================================================ */
+const API = 'GANTI_URL_APPS_SCRIPT'; // <-- Ganti dengan URL /exec Web App Apps Script Anda
+const $ = i => document.getElementById(i), R = n => 'Rp ' + Math.round(+n || 0).toLocaleString('id-ID');
+const E = s => String(s ?? '').replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
+const params = new URLSearchParams(location.search);
+const TOK = params.get('t') || '', MEJA = +params.get('m') || 0;
+let DATA = null, cart = {}, curCat = 'Semua', lastOrd = null;
+
+function toast(m, e) { const t = $('toast'); t.textContent = m; t.style.background = e ? '#d93b3b' : '#0f9d6b'; t.hidden = 0; clearTimeout(t._t); t._t = setTimeout(() => t.hidden = 1, 2800); }
+async function api(action, b = {}) {
+  let r, t;
+  try { r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...b }) }); t = await r.text(); }
+  catch (e) { throw new Error('Tidak ada koneksi. Periksa internet Anda.'); }
+  let j; try { j = JSON.parse(t); } catch (e) { throw new Error('Server tidak merespons. Hubungi kasir.'); }
+  if (!j.ok) throw new Error(j.error || 'Terjadi kesalahan');
+  return j;
+}
+function fail(title, msg) { $('loading').hidden = 1; $('err').hidden = 0; $('err-t').textContent = title; $('err-m').textContent = msg; }
+
+async function init() {
+  if (!TOK) return fail('QR Code tidak valid', 'QR Code tidak berisi token toko. Pindai ulang QR Code di meja.');
+  if (!MEJA) return fail('Nomor meja tidak ditemukan', 'Pindai ulang QR Code yang ada di meja Anda.');
+  if (API.startsWith('GANTI')) return fail('Backend belum dikonfigurasi', 'Pemilik restoran belum mengisi URL API di menu.html. Hubungi kasir.');
+  try {
+    DATA = await api('menu', { t: TOK, m: MEJA });
+    if (!DATA.meja_valid) return fail('Meja tidak ditemukan', 'Meja ' + MEJA + ' belum terdaftar. Hubungi kasir.');
+    render();
+    // Cek status pesanan terakhir di meja ini
+    cekStatus();
+    setInterval(cekStatus, 15000);
+  } catch (e) { fail('Gagal memuat menu', e.message); }
+}
+
+function render() {
+  $('loading').hidden = 1; $('app').hidden = 0;
+  $('nm').textContent = DATA.toko;
+  $('lg').textContent = (DATA.toko || 'M')[0].toUpperCase();
+  const info = DATA.info || {};
+  let sub = [];
+  if (info.alamat) sub.push(info.alamat);
+  if (info.telp) sub.push(info.telp);
+  if (info.wbuka && info.wtutup) sub.push(`Buka ${info.wbuka}-${info.wtutup}`);
+  $('sub').textContent = sub.join(' · ');
+  $('meja').textContent = 'Meja ' + MEJA;
+  $('foot').textContent = info.footer || 'Terima kasih telah berkunjung';
+  // Kategori
+  const cats = ['Semua', ...new Set(DATA.menu.map(m => m.kategori || 'Makanan'))];
+  $('cats').innerHTML = cats.map(c => `<button class="chip ${c === curCat ? 'on' : ''}" onclick="setCat('${E(c).replace(/'/g,"\\'")}')">${E(c)}</button>`).join('');
+  renderMenu();
+}
+
+function setCat(c) { curCat = c; document.querySelectorAll('#cats .chip').forEach(b => b.classList.toggle('on', b.textContent === c)); renderMenu(); }
+
+function renderMenu() {
+  const list = DATA.menu.filter(m => curCat === 'Semua' || (m.kategori || 'Makanan') === curCat);
+  // Group by kategori
+  const groups = {}; list.forEach(m => { const k = m.kategori || 'Makanan'; (groups[k] = groups[k] || []).push(m); });
+  let html = '';
+  Object.keys(groups).sort().forEach(k => {
+    html += `<div class="sec-ttl">${E(k)}</div>`;
+    html += groups[k].map(m => {
+      const q = cart[m.id] || 0, habis = m.status === 'habis';
+      return `<div class="mi ${habis ? 'z' : ''}">
+        <div class="ph">${m.foto ? `<img src="${E(m.foto)}" alt="${E(m.nama)}" loading="lazy">` : '🍽'}</div>
+        <div class="bd">
+          <div class="nm">${E(m.nama)} ${habis ? '<span class="st-badge" style="background:#fde8e8;color:var(--er)">Habis</span>' : ''}</div>
+          ${m.deskripsi ? `<div class="ds">${E(m.deskripsi)}</div>` : ''}
+          <div class="pr">${R(m.harga)}</div>
+          ${habis ? '' : `<div class="add">
+            ${q > 0 ? `<button class="g" onclick="chg('${m.id}',-1)">−</button><span class="qty">${q}</span><button class="g" onclick="chg('${m.id}',1)">+</button>` : `<button class="b" style="padding:8px 16px;font-size:13px" onclick="chg('${m.id}',1)">+ Tambah</button>`}
+          </div>`}
+        </div>
+      </div>`;
+    }).join('');
+  });
+  $('menu-list').innerHTML = html || '<div class="empty"><div class="ico">📭</div><p>Menu kategori ini belum tersedia.</p></div>';
+}
+
+function chg(id, d) {
+  const m = DATA.menu.find(x => x.id === id); if (!m || m.status === 'habis') return;
+  const n = (cart[id] || 0) + d; if (n < 0) return;
+  n === 0 ? delete cart[id] : cart[id] = n;
+  renderMenu(); cartBar();
+}
+function cartBar() {
+  const ids = Object.keys(cart);
+  const tot = ids.reduce((a, id) => { const m = DATA.menu.find(x => x.id === id); return a + (m ? m.harga * cart[id] : 0); }, 0);
+  const cnt = ids.reduce((a, id) => a + cart[id], 0);
+  if (cnt > 0) { $('cart-bar').hidden = 0; $('cart-bar').classList.add('show'); $('cb-n').textContent = cnt + ' item'; $('cb-t').textContent = R(tot); }
+  else { $('cart-bar').classList.remove('show'); setTimeout(() => { if (!Object.keys(cart).length) $('cart-bar').hidden = 1; }, 250); }
+}
+
+function openCart() {
+  const ids = Object.keys(cart);
+  if (!ids.length) return toast('Keranjang masih kosong', 1);
+  $('cart-items').innerHTML = ids.map(id => {
+    const m = DATA.menu.find(x => x.id === id), q = cart[id];
+    return `<div class="ci"><div class="nm"><div>${E(m.nama)}</div><div class="ds">${R(m.harga)} × ${q}</div></div>
+    <div class="qbtn"><button onclick="chg('${id}',-1);openCart()">−</button><span class="q">${q}</span><button onclick="chg('${id}',1);openCart()">+</button></div>
+    <div class="sub">${R(m.harga * q)}</div></div>`;
+  }).join('');
+  const info = DATA.info || {};
+  const sub = ids.reduce((a, id) => { const m = DATA.menu.find(x => x.id === id); return a + m.harga * cart[id]; }, 0);
+  const pjk = Math.round(sub * (+info.pajak || 0) / 100);
+  const svc = Math.round(sub * (+info.service || 0) / 100);
+  const tot = sub + pjk + svc;
+  $('cart-sum').innerHTML = `<div style="background:var(--pt);border-radius:12px;padding:12px 14px">
+    <div class="r jb s m"><span>Subtotal</span><span>${R(sub)}</span></div>
+    ${pjk ? `<div class="r jb s m"><span>Pajak ${info.pajak}%</span><span>${R(pjk)}</span></div>` : ''}
+    ${svc ? `<div class="r jb s m"><span>Service ${info.service}%</span><span>${R(svc)}</span></div>` : ''}
+    <div class="r jb" style="margin-top:6px;font-size:18px"><b>Total</b><b style="color:var(--or)">${R(tot)}</b></div>
+  </div>
+  <p class="s m" style="margin-top:8px;text-align:center">Pembayaran di kasir (tunai/QRIS). Pesanan dikirim ke dapur sekarang.</p>`;
+  $('shc').classList.add('o');
+}
+function cs() { document.querySelectorAll('.sh').forEach(x => x.classList.remove('o')); }
+
+async function kirim() {
+  const ids = Object.keys(cart); if (!ids.length) return;
+  const items = ids.map(id => ({ id, qty: cart[id] }));
+  const pel = $('catPel').value.trim();
+  $('shc').classList.remove('o');
+  toast('Mengirim pesanan…');
+  try {
+    const j = await api('order', { t: TOK, m: MEJA, items, pel });
+    cart = {}; lastOrd = j.id; renderMenu(); cartBar();
+    showStatus(j.id, 'BARU', j.total);
+    toast('Pesanan terkirim! Meja ' + MEJA);
+  } catch (e) { toast(e.message, 1); }
+}
+
+async function cekStatus() {
+  if (!lastOrd) return;
+  try {
+    const j = await api('orderStatus', { t: TOK, m: MEJA });
+    if (j.id && j.status) { lastOrd = j.id; showStatus(j.id, j.status, j.total, true); }
+  } catch (e) {}
+}
+const ST_L = { BARU: { l: 'Pesanan diterima', c: 'new', ico: '📝', desc: 'Pesanan Anda sudah sampai ke dapur. Mohon tunggu sebentar.' }, DIPROSES: { l: 'Sedang diproses', c: 'proc', ico: '👨‍🍳', desc: 'Dapur sedang menyiapkan pesanan Anda.' }, SELESAI: { l: 'Pesanan siap', c: 'done', ico: '✅', desc: 'Pesanan Anda sudah siap. Silakan panggil kasir untuk pembayaran.' }, BATAL: { l: 'Dibatalkan', c: 'new', ico: '❌', desc: 'Pesanan dibatalkan. Hubungi kasir bila perlu.' } };
+function showStatus(id, status, total, silent) {
+  const s = ST_L[status] || ST_L.BARU;
+  const card = $('status-card'); card.hidden = 0;
+  card.innerHTML = `<div class="r" style="gap:10px;align-items:flex-start"><div style="font-size:28px">${s.ico}</div><div style="flex:1"><div style="font-weight:700;font-size:16px">Status: <span class="st-badge ${s.c}">${s.l}</span></div><div class="s m" style="margin-top:4px">${s.desc}</div><div class="s m" style="margin-top:6px">No. pesanan: <b>${E(id)}</b>${total ? ' · Total ' + R(total) : ''}</div></div></div>`;
+  if (!silent && status !== 'BARU') {
+    $('status-content').innerHTML = `<div style="font-size:48px;margin-bottom:10px">${s.ico}</div><h2 style="font-size:20px;margin-bottom:6px">${s.l}</h2><p class="m" style="margin-bottom:10px">${s.desc}</p><p class="s m">No. pesanan: ${E(id)}</p>`;
+    $('shs').classList.add('o');
+  }
+}
+
+init();
+</script>
+</body>
+</html>
