@@ -2,211 +2,376 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
 <title>MenuKu — Menu Digital</title>
 <meta name="theme-color" content="#0a8d6b">
 <style>
-:root{--bg:#f2f6fa;--c:#fff;--l:#e3e9f0;--t:#112032;--m:#687787;--p:#0a8d6b;--pt:#e6f6ef;--or:#ff5e1f;--ok:#0f9d6b;--er:#d93b3b;--wa:#e8780a;--sh:0 2px 8px rgba(17,32,50,.06);--sh2:0 8px 24px rgba(17,32,50,.12)}
-*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
-body{font:15px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;padding-bottom:80px}
-input,select,textarea,button{font:inherit;color:inherit}[hidden]{display:none!important}
-.b{background:var(--p);color:#fff;border:0;border-radius:12px;padding:12px 20px;font-weight:600;cursor:pointer;transition:.1s}.b:active{transform:scale(.97)}
-.b.o{background:var(--or)}.b.er{background:var(--er)}
-.g{background:var(--c);border:1.5px solid var(--l);border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;color:var(--p)}
-.r{display:flex;gap:8px;align-items:center}.w{flex-wrap:wrap}.f{flex:1;min-width:0}.jb{justify-content:space-between}
-.col{display:flex;flex-direction:column;gap:12px}.m{color:var(--m)}.s{font-size:12px}.k{font-weight:600}
-header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#0a8d6b,#076b50);color:#fff;padding:max(14px,env(safe-area-inset-top)) 18px 14px;box-shadow:0 2px 12px rgba(10,141,107,.25)}
-.hdr-top{display:flex;gap:12px;align-items:center}
-.hdr-lg{width:44px;height:44px;background:#fff;color:#0a8d6b;border-radius:12px;display:grid;place-items:center;font-size:22px;font-weight:800;flex:none}
-.hdr-nm{font-size:18px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.hdr-sub{font-size:12px;opacity:.85;margin-top:1px}
-.hdr-meja{background:rgba(255,255,255,.18);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-top:6px;width:fit-content}
-#cats{position:sticky;top:0;z-index:15;display:flex;gap:6px;overflow-x:auto;background:var(--c);border-bottom:1px solid var(--l);padding:10px 14px;scrollbar-width:none}#cats::-webkit-scrollbar{display:none}
-.chip{border:1.5px solid var(--l);background:var(--c);border-radius:99px;padding:8px 16px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;scroll-snap-align:start}
-.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
-main{padding:14px;max-width:800px;margin:auto}
-.sec-ttl{font-weight:700;font-size:17px;margin:18px 0 10px;color:var(--t)}
-.ml{display:flex;flex-direction:column;gap:10px}
-.mi{display:flex;gap:12px;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:12px;box-shadow:var(--sh);align-items:stretch;overflow:hidden}
-.mi.z{opacity:.5}
-.mi .ph{width:96px;height:96px;border-radius:12px;background:var(--pt);display:grid;place-items:center;font-size:32px;color:var(--p);flex:none;overflow:hidden}
+:root{
+  --bg:#faf7f2; --c:#fff; --l:#eee6dc; --t:#1a1a1a; --m:#7a6f64; --m2:#a89e92;
+  --p:#e85d2c; --pt:#fff2ec; --or:#ff6b35; --ok:#0a8d6b; --er:#d93b3b; --wa:#e8780a;
+  --gold:#c8932f; --shadow:0 2px 12px rgba(60,40,20,.06); --shadow-lg:0 8px 28px rgba(60,40,20,.12);
+  --hero:#1f3a2e; --hero2:#2d5440;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--sans);background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;line-height:1.5;padding-bottom:90px;overscroll-behavior-y:none}
+input,select,textarea,button{font:inherit;color:inherit;border:0;background:0}
+button{cursor:pointer}
+[hidden]{display:none!important}
+img{display:block;max-width:100%}
+
+/* === HERO HEADER === */
+.hero{position:relative;color:#fff;padding:max(20px,env(safe-area-inset-top)) 20px 22px;background:linear-gradient(135deg,var(--hero) 0%,var(--hero2) 60%,#1a2e25 100%);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(232,93,44,.25) 0,transparent 50%),radial-gradient(circle at 20% 90%,rgba(200,147,47,.15) 0,transparent 40%);pointer-events:none}
+.hero-row{display:flex;align-items:flex-start;gap:14px;position:relative;z-index:1}
+.hero-logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#fff,#f0e6d2);color:var(--hero);display:grid;place-items:center;font-family:var(--serif);font-size:28px;font-weight:700;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.hero-info{flex:1;min-width:0}
+.hero-info h1{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:3px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.hero-sub{font-size:12px;opacity:.85;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.hero-sub span{display:inline-flex;align-items:center;gap:3px}
+.hero-meja{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600;margin-top:10px;width:fit-content}
+.hero-meja svg{width:14px;height:14px}
+.hero-status{position:absolute;top:max(20px,env(safe-area-inset-top));right:20px;z-index:2}
+.hero-status .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.25);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.25)}50%{box-shadow:0 0 0 6px rgba(74,222,128,.1)}} 
+.hero-status.off .dot{background:#fbbf24;box-shadow:0 0 0 3px rgba(251,191,36,.25)}
+
+/* === SEARCH === */
+.search-wrap{position:relative;z-index:10;padding:0 16px;margin-top:-14px}
+.search{position:relative;background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;padding:12px 16px}
+.search svg{width:18px;height:18px;color:var(--m2);flex:none}
+.search input{flex:1;font-size:15px;outline:0;min-width:0}
+.search input::placeholder{color:var(--m2)}
+
+/* === CATEGORIES === */
+#cats{position:sticky;top:0;z-index:15;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:14px 16px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#cats::-webkit-scrollbar{display:none}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--l);border-radius:99px;padding:9px 18px;font-weight:600;font-size:13px;white-space:nowrap;scroll-snap-align:start;color:var(--m);transition:.15s}
+.chip.on{background:var(--hero);border-color:var(--hero);color:#fff;box-shadow:0 4px 12px rgba(31,58,46,.25)}
+.chip .ico{font-size:14px}
+
+/* === MENU LIST === */
+main{padding:6px 16px 20px;max-width:720px;margin:auto}
+.sec-ttl{font-family:var(--serif);font-size:20px;font-weight:700;margin:20px 4px 12px;color:var(--t);display:flex;align-items:baseline;gap:8px}
+.sec-ttl small{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--m2)}
+.sec-ttl::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--l),transparent);margin-left:6px}
+
+.ml{display:flex;flex-direction:column;gap:12px}
+.mi{display:flex;gap:14px;background:#fff;border-radius:16px;padding:12px;box-shadow:var(--shadow);transition:.2s;overflow:hidden;position:relative}
+.mi:active{transform:scale(.99)}
+.mi.z{opacity:.55}
+.mi .ph{width:108px;height:108px;border-radius:14px;background:linear-gradient(135deg,var(--pt),#f9e9df);display:grid;place-items:center;font-size:38px;flex:none;overflow:hidden;position:relative}
 .mi .ph img{width:100%;height:100%;object-fit:cover}
-.mi .bd{flex:1;min-width:0;display:flex;flex-direction:column}
-.mi .nm{font-weight:700;font-size:15px;line-height:1.3}
-.mi .ds{font-size:12px;color:var(--m);line-height:1.4;margin:3px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.mi .pr{font-weight:800;color:var(--or);font-size:16px;margin-top:auto}
-.mi .add{display:flex;align-items:center;gap:6px;margin-top:6px}
-.mi .add .g{padding:6px 10px;font-size:14px}
-.mi .qty{font-weight:800;font-size:16px;min-width:24px;text-align:center}
-#cart-bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--c);border-top:1px solid var(--l);padding:12px 14px max(12px,env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(17,32,50,.08);transform:translateY(100%);transition:transform .25s}
+.mi .ph .emo{filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))}
+.mi .bd{flex:1;min-width:0;display:flex;flex-direction:column;padding:2px 0}
+.mi .nm{font-weight:700;font-size:15.5px;line-height:1.3;color:var(--t);display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.mi .ds{font-size:12.5px;color:var(--m);line-height:1.45;margin:4px 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mi .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.mi .pr{font-weight:800;color:var(--or);font-size:16px;font-family:var(--serif)}
+.mi .pr small{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--m2);margin-right:2px}
+.mi .add{display:flex;align-items:center;gap:8px}
+.mi .add .qty{font-weight:700;font-size:15px;min-width:22px;text-align:center;color:var(--t)}
+.mi-btn{width:32px;height:32px;border-radius:10px;font-weight:700;font-size:18px;display:grid;place-items:center;transition:.15s;padding:0;user-select:none}
+.mi-btn.add{background:var(--or);color:#fff;box-shadow:0 3px 8px rgba(255,107,53,.3);width:auto;padding:0 14px;font-size:13px;gap:4px;display:inline-flex}
+.mi-btn.min{background:#fff;border:1.5px solid var(--l);color:var(--or)}
+.mi-btn.pls{background:var(--or);color:#fff}
+.mi-btn:active{transform:scale(.9)}
+.st-badge{display:inline-flex;align-items:center;gap:3px;border-radius:6px;padding:2px 7px;font-size:10px;font-weight:700;background:#fde8e8;color:var(--er);letter-spacing:.02em;text-transform:uppercase}
+
+/* === CART BAR === */
+#cart-bar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:30;background:linear-gradient(135deg,var(--or),#e84d20);border-radius:16px;padding:14px 18px;box-shadow:0 10px 28px rgba(255,107,53,.4);display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fff;transform:translateY(calc(100% + 30px));transition:transform .3s cubic-bezier(.4,0,.2,1)}
 #cart-bar.show{transform:none}
-#cart-bar .r{justify-content:space-between}
 #cart-bar .info{flex:1;min-width:0}
-#cart-bar .info b{font-size:16px}
-#cart-bar .info .s{color:var(--m)}
-.sh{position:fixed;inset:0;z-index:60;background:rgba(8,20,35,.55);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}.sh.o{opacity:1;pointer-events:auto}
-.sh>div{background:var(--bg);width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:10px 20px max(20px,env(safe-area-inset-bottom));transform:translateY(40px);transition:transform .25s}.sh.o>div{transform:none}
-.gr{width:40px;height:4px;border-radius:9px;background:var(--l);margin:0 auto 14px}
-.ci{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--l)}.ci:last-child{border:0}
-.ci .nm{font-weight:600;flex:1;min-width:0}.ci .nm .ds{font-size:11px;color:var(--m);margin-top:2px}
-.ci .qbtn{display:flex;align-items:center;gap:6px}
-.ci .qbtn button{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--l);background:var(--c);cursor:pointer;font-weight:700;color:var(--p);font-size:16px;padding:0}
-.ci .qbtn .q{font-weight:800;min-width:22px;text-align:center}
-.ci .sub{font-weight:700;color:var(--or)}
-#toast{position:fixed;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:300;color:#fff;padding:12px 20px;border-radius:12px;font-weight:600;max-width:90vw;box-shadow:var(--sh2);text-align:center}
-.st-badge{display:inline-block;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:700;background:var(--pt);color:var(--p)}.st-badge.proc{background:#fff1e6;color:var(--wa)}.st-badge.done{background:#e6f6ef;color:var(--ok)}.st-badge.new{background:#fff4e5;color:var(--or)}
-.empty{text-align:center;padding:60px 20px;color:var(--m)}
-.empty .ico{font-size:48px;margin-bottom:10px}
-.err-screen{min-height:100vh;display:grid;place-items:center;padding:30px;text-align:center;background:radial-gradient(circle at 50% 30%,#e6f6ef,transparent),var(--bg)}
-.err-card{background:var(--c);border-radius:20px;padding:30px 24px;box-shadow:var(--sh2);max-width:380px}
-.err-card .ico{font-size:48px;margin-bottom:10px}
-.err-card h1{font-size:20px;margin-bottom:8px}
-.err-card p{color:var(--m);font-size:14px;line-height:1.5;margin-bottom:16px}
-@media(max-width:600px){.mi .ph{width:84px;height:84px;font-size:26px}}
+#cart-bar .info .cnt{font-size:12px;opacity:.9;font-weight:600;display:flex;align-items:center;gap:6px}
+#cart-bar .info .cnt .badge{background:rgba(255,255,255,.25);border-radius:99px;padding:1px 8px;font-size:11px}
+#cart-bar .info .tot{font-size:17px;font-weight:800;line-height:1.2}
+#cart-bar .go{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;white-space:nowrap}
+#cart-bar .go svg{width:16px;height:16px}
+
+/* === SHEET === */
+.sheet{position:fixed;inset:0;z-index:60;background:rgba(15,20,15,.55);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet.o{opacity:1;pointer-events:auto}
+.sheet>div{background:var(--bg);width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:10px 20px max(20px,env(safe-area-inset-bottom));transform:translateY(60px);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.sheet.o>div{transform:none}
+.gr{width:42px;height:4px;border-radius:9px;background:var(--l);margin:0 auto 16px}
+.sheet-title{font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:4px}
+.sheet-sub{font-size:13px;color:var(--m);margin-bottom:14px}
+
+/* === CART ITEMS === */
+.ci{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--l)}
+.ci:last-child{border:0}
+.ci .ph-mini{width:56px;height:56px;border-radius:10px;background:var(--pt);display:grid;place-items:center;font-size:22px;flex:none;overflow:hidden}
+.ci .ph-mini img{width:100%;height:100%;object-fit:cover}
+.ci .nm{flex:1;min-width:0}
+.ci .nm .ttl{font-weight:600;font-size:14.5px;line-height:1.3}
+.ci .nm .pr-mini{font-size:12px;color:var(--m);margin-top:2px}
+.ci .qbtn{display:flex;align-items:center;gap:8px;margin-top:6px}
+.ci .qbtn button{width:28px;height:28px;border-radius:8px;font-weight:700;font-size:16px;display:grid;place-items:center;padding:0}
+.ci .qbtn .min{background:#fff;border:1.5px solid var(--l);color:var(--or)}
+.ci .qbtn .pls{background:var(--or);color:#fff}
+.ci .qbtn .q{font-weight:700;min-width:22px;text-align:center;font-size:15px}
+.ci .sub{font-weight:800;color:var(--or);font-size:15px;font-family:var(--serif);text-align:right;white-space:nowrap}
+
+/* === SUMMARY === */
+.sum{background:#fff;border-radius:14px;padding:14px 16px;margin-top:14px;box-shadow:var(--shadow)}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;color:var(--m);padding:3px 0}
+.sum-row.total{font-size:18px;font-weight:800;color:var(--t);border-top:1px dashed var(--l);margin-top:8px;padding-top:10px}
+.sum-row.total .val{color:var(--or);font-family:var(--serif);font-size:20px}
+.sum-note{font-size:11.5px;color:var(--m2);text-align:center;margin-top:10px;padding:8px;background:var(--pt);border-radius:10px}
+
+.btn-primary{display:block;width:100%;background:linear-gradient(135deg,var(--or),#e84d20);color:#fff;font-weight:700;font-size:15px;padding:15px;border-radius:14px;box-shadow:0 6px 16px rgba(255,107,53,.35);margin-top:14px;transition:.15s}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{opacity:.5;cursor:default}
+.btn-ghost{background:#fff;border:1.5px solid var(--l);color:var(--m);font-weight:600;padding:11px 18px;border-radius:12px;font-size:14px}
+.input{width:100%;background:#fff;border:1.5px solid var(--l);border-radius:12px;padding:13px 15px;font-size:15px;outline:0;margin-top:10px}
+.input:focus{border-color:var(--or)}
+
+/* === STATUS CARD === */
+#status-card{background:#fff;border-radius:16px;padding:16px;box-shadow:var(--shadow);margin-top:16px;border-left:4px solid var(--or)}
+.st-progress{display:flex;gap:4px;margin:10px 0 14px}
+.st-step{flex:1;height:4px;border-radius:99px;background:var(--l);transition:.3s}
+.st-step.on{background:var(--or)}
+.st-step.done{background:var(--ok)}
+.st-row{display:flex;gap:12px;align-items:flex-start}
+.st-ico{font-size:30px;flex:none;line-height:1}
+.st-body{flex:1;min-width:0}
+.st-body .lbl{font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.st-body .desc{font-size:12.5px;color:var(--m);margin-top:3px;line-height:1.4}
+.st-body .meta{font-size:11.5px;color:var(--m2);margin-top:6px}
+.st-body .meta b{color:var(--t)}
+.st-badge2{display:inline-flex;align-items:center;gap:4px;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700}
+.st-badge2.new{background:#fff4e5;color:var(--or)}
+.st-badge2.proc{background:#fff1e6;color:var(--wa)}
+.st-badge2.done{background:#e6f6ef;color:var(--ok)}
+.st-badge2.cancel{background:#fde8e8;color:var(--er)}
+
+/* === TOAST === */
+#toast{position:fixed;top:max(16px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:300;color:#fff;padding:13px 22px;border-radius:14px;font-weight:600;font-size:14px;max-width:90vw;box-shadow:var(--shadow-lg);text-align:center;background:var(--hero);opacity:0;transition:.25s;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* === EMPTY & ERROR === */
+.empty{text-align:center;padding:50px 20px;color:var(--m)}
+.empty .ico{font-size:56px;margin-bottom:12px;opacity:.5}
+.empty p{font-size:14px;line-height:1.5}
+.err-screen{min-height:100vh;display:grid;place-items:center;padding:30px;text-align:center;background:linear-gradient(135deg,var(--hero),var(--hero2))}
+.err-card{background:#fff;border-radius:24px;padding:36px 28px;box-shadow:var(--shadow-lg);max-width:380px;width:100%}
+.err-card .ico{font-size:56px;margin-bottom:14px}
+.err-card h1{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--t)}
+.err-card p{color:var(--m);font-size:14px;line-height:1.55;margin-bottom:18px}
+.err-card .btn-primary{margin-top:0}
+
+/* loading */
+#loading{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,var(--hero),var(--hero2));color:#fff}
+.loader{text-align:center}
+.loader .spin{width:48px;height:48px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 14px}
+.loader p{font-weight:600;opacity:.9;font-size:14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+@media(max-width:380px){
+ .mi .ph{width:92px;height:92px;font-size:32px}
+ .hero-info h1{font-size:20px}
+}
 </style>
 </head>
 <body>
 
-<div id="loading" style="min-height:100vh;display:grid;place-items:center;color:var(--m);flex-direction:column;gap:10px">
-  <div style="width:48px;height:48px;border:4px solid var(--l);border-top-color:var(--p);border-radius:50%;animation:sp 1s linear infinite"></div>
-  <p style="font-weight:600">Memuat menu…</p>
-  <style>@keyframes sp{to{transform:rotate(360deg)}}</style>
+<div id="loading">
+  <div class="loader">
+    <div class="spin"></div>
+    <p>Menyiapkan menu…</p>
+  </div>
 </div>
 
 <div id="err" class="err-screen" hidden>
   <div class="err-card">
-    <div class="ico">🍽</div>
+    <div class="ico" id="err-ico">🍽</div>
     <h1 id="err-t">Menu tidak tersedia</h1>
     <p id="err-m">Periksa QR Code atau hubungi kasir.</p>
-    <button class="b" onclick="location.reload()">Coba lagi</button>
+    <button class="btn-primary" onclick="location.reload()">Coba lagi</button>
   </div>
 </div>
 
 <div id="app" hidden>
-  <header>
-    <div class="hdr-top">
-      <div class="hdr-lg" id="lg">M</div>
-      <div style="flex:1;min-width:0">
-        <div class="hdr-nm" id="nm"></div>
-        <div class="hdr-sub" id="sub"></div>
-        <div class="hdr-meja"><span>📍</span> <span id="meja">Meja ?</span></div>
+  <header class="hero">
+    <div class="hero-status" id="hstat"><div class="dot"></div></div>
+    <div class="hero-row">
+      <div class="hero-logo" id="lg">M</div>
+      <div class="hero-info">
+        <h1 id="nm">—</h1>
+        <div class="hero-sub" id="sub"></div>
+        <div class="hero-meja">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <span id="meja">Meja ?</span>
+        </div>
       </div>
     </div>
   </header>
+
+  <div class="search-wrap">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" placeholder="Cari menu favorit Anda…" oninput="renderMenu()">
+    </div>
+  </div>
+
   <div id="cats"></div>
+
   <main>
     <div id="menu-list" class="ml"></div>
-    <div style="height:30px"></div>
-    <div id="status-card" class="ci" style="background:var(--c);border:1px solid var(--l);border-radius:14px;padding:14px;margin-top:14px" hidden></div>
-    <div class="s m" style="text-align:center;padding:14px" id="foot"></div>
+    <div id="status-card" hidden></div>
+    <div id="foot" style="text-align:center;padding:20px 14px 30px;color:var(--m2);font-size:12px;line-height:1.6"></div>
   </main>
+
   <div id="cart-bar" hidden>
-    <div class="r">
-      <div class="info"><div class="s" id="cb-n">0 item</div><b id="cb-t">Rp 0</b></div>
-      <button class="b o" onclick="openCart()">Lihat pesanan</button>
+    <div class="info">
+      <div class="cnt"><span class="badge" id="cb-n">0</span> item dalam keranjang</div>
+      <div class="tot" id="cb-t">Rp 0</div>
+    </div>
+    <div class="go">
+      <span>Lihat pesanan</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </div>
   </div>
 </div>
 
 <!-- MODAL CART -->
-<div id="shc" class="sh" onclick="if(event.target===this)cs()"><div>
-  <div class="gr"></div>
-  <div class="r jb"><b style="font-size:18px">Pesanan Anda</b><button class="g" onclick="cs()">Tutup</button></div>
-  <div id="cart-items" style="margin-top:8px"></div>
-  <div id="cart-sum" style="margin-top:10px"></div>
-  <input id="catPel" class="g" style="width:100%;margin-top:10px;border:1.5px solid var(--l);border-radius:12px;padding:12px;font-size:15px" placeholder="Nama / catatan untuk kasir (opsional)">
-  <button class="b o" style="padding:14px;width:100%;margin-top:12px" onclick="kirim()">Kirim pesanan</button>
-</div></div>
+<div id="shc" class="sheet" onclick="if(event.target===this)cs()">
+  <div>
+    <div class="gr"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <div><div class="sheet-title">Pesanan Anda</div><div class="sheet-sub">Meja <b id="sc-meja">?</b> · periksa kembali sebelum kirim</div></div>
+      <button class="btn-ghost" onclick="cs()">Tutup</button>
+    </div>
+    <div id="cart-items"></div>
+    <div id="cart-sum"></div>
+    <input id="catPel" class="input" placeholder="Catatan untuk kasir / nama (opsional)">
+    <button class="btn-primary" id="kirimBtn" onclick="kirim()">
+      <svg style="display:inline-block;vertical-align:-3px;margin-right:6px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      Kirim pesanan ke dapur
+    </button>
+  </div>
+</div>
 
 <!-- MODAL STATUS -->
-<div id="shs" class="sh" onclick="if(event.target===this)cs()"><div style="text-align:center">
-  <div class="gr"></div>
-  <div id="status-content"></div>
-  <button class="g" style="margin-top:14px" onclick="cs()">Tutup</button>
-</div></div>
+<div id="shs" class="sheet" onclick="if(event.target===this)cs()">
+  <div style="text-align:center">
+    <div class="gr"></div>
+    <div id="status-content"></div>
+    <button class="btn-ghost" style="margin-top:18px" onclick="cs()">Tutup</button>
+  </div>
+</div>
 
-<div id="toast" hidden></div>
+<div id="toast"></div>
 
 <script>
-/* ============================================================
- * MenuKu — Halaman Pelanggan (menu.html)
- * URL: menu.html?t=TOKEN&m=NOMOR_MEJA
- * ============================================================ */
-const API = 'https://script.google.com/macros/s/AKfycbz3yedhl9M8UheDo8C3aMqyNKr-piXrghBJURh2r5Ut8QyDvymGERmWG1yHU9NcBKg/exec'; // <-- Ganti dengan URL /exec Web App Apps Script Anda
+const API = 'https://script.google.com/macros/s/AKfycbz3yedhl9M8UheDo8C3aMqyNKr-piXrghBJURh2r5Ut8QyDvymGERmWG1yHU9NcBKg/exec';
 const $ = i => document.getElementById(i), R = n => 'Rp ' + Math.round(+n || 0).toLocaleString('id-ID');
 const E = s => String(s ?? '').replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
 const params = new URLSearchParams(location.search);
 const TOK = params.get('t') || '', MEJA = +params.get('m') || 0;
-let DATA = null, cart = {}, curCat = 'Semua', lastOrd = null;
+let DATA = null, cart = {}, curCat = 'Semua', lastOrd = null, lastStatus = '';
 
-function toast(m, e) { const t = $('toast'); t.textContent = m; t.style.background = e ? '#d93b3b' : '#0f9d6b'; t.hidden = 0; clearTimeout(t._t); t._t = setTimeout(() => t.hidden = 1, 2800); }
+function toast(m, e) {
+  const t = $('toast');
+  t.textContent = m;
+  t.style.background = e ? 'var(--er)' : 'var(--hero)';
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
 async function api(action, b = {}) {
   let r, t;
   try { r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...b }) }); t = await r.text(); }
-  catch (e) { throw new Error('Tidak ada koneksi. Periksa internet Anda.'); }
+  catch (e) { throw new Error('Tidak ada koneksi. Periksa internet.'); }
   let j; try { j = JSON.parse(t); } catch (e) { throw new Error('Server tidak merespons. Hubungi kasir.'); }
   if (!j.ok) throw new Error(j.error || 'Terjadi kesalahan');
   return j;
 }
-function fail(title, msg) { $('loading').hidden = 1; $('err').hidden = 0; $('err-t').textContent = title; $('err-m').textContent = msg; }
+
+function fail(title, msg, ico = '🍽') {
+  $('loading').hidden = 1; $('err').hidden = 0;
+  $('err-t').textContent = title; $('err-m').textContent = msg; $('err-ico').textContent = ico;
+}
 
 async function init() {
-  if (!TOK) return fail('QR Code tidak valid', 'QR Code tidak berisi token toko. Pindai ulang QR Code di meja.');
-  if (!MEJA) return fail('Nomor meja tidak ditemukan', 'Pindai ulang QR Code yang ada di meja Anda.');
-  if (API.startsWith('GANTI')) return fail('Backend belum dikonfigurasi', 'Pemilik restoran belum mengisi URL API di menu.html. Hubungi kasir.');
+  if (!TOK) return fail('QR Code tidak valid', 'QR Code tidak berisi token toko. Pindai ulang QR Code di meja.', '⚠️');
+  if (!MEJA) return fail('Meja tidak ditemukan', 'Pindai ulang QR Code yang ada di meja Anda.', '🪑');
+  if (API.startsWith('GANTI')) return fail('Backend belum dikonfigurasi', 'Pemilik restoran belum mengisi URL API di menu.html. Hubungi kasir.', '🔧');
   try {
     DATA = await api('menu', { t: TOK, m: MEJA });
-    if (!DATA.meja_valid) return fail('Meja tidak ditemukan', 'Meja ' + MEJA + ' belum terdaftar. Hubungi kasir.');
+    if (!DATA.meja_valid) return fail('Meja tidak terdaftar', 'Meja ' + MEJA + ' belum terdaftar di restoran ini. Hubungi kasir.', '🪑');
     render();
-    // Cek status pesanan terakhir di meja ini
     cekStatus();
-    setInterval(cekStatus, 15000);
-  } catch (e) { fail('Gagal memuat menu', e.message); }
+    setInterval(cekStatus, 12000);
+  } catch (e) { fail('Gagal memuat menu', e.message, '📡'); }
 }
 
 function render() {
   $('loading').hidden = 1; $('app').hidden = 0;
   $('nm').textContent = DATA.toko;
   $('lg').textContent = (DATA.toko || 'M')[0].toUpperCase();
+  $('sc-meja').textContent = MEJA;
   const info = DATA.info || {};
   let sub = [];
-  if (info.alamat) sub.push(info.alamat);
-  if (info.telp) sub.push(info.telp);
-  if (info.wbuka && info.wtutup) sub.push(`Buka ${info.wbuka}-${info.wtutup}`);
-  $('sub').textContent = sub.join(' · ');
+  if (info.wbuka && info.wtutup) sub.push(`<span>🕐 ${info.wbuka}-${info.wtutup}</span>`);
+  if (info.telp) sub.push(`<span>📞 ${info.telp}</span>`);
+  $('sub').innerHTML = sub.length ? sub.join('') : (info.alamat ? `<span>📍 ${E(info.alamat)}</span>` : '');
+  // Status buka/tutup
+  if (info.wbuka && info.wtutup) {
+    const now = new Date(), h = String(now.getHours()).padStart(2, '0'), m = String(now.getMinutes()).padStart(2, '0');
+    const cur = h + ':' + m;
+    const open = cur >= info.wbuka && cur <= info.wtutup;
+    if (!open) { $('hstat').classList.add('off'); $('hstat').innerHTML = '<div class="dot"></div>'; $('hstat').title = 'Restoran sedang tutup — pesanan tetap dikirim, tapi mungkin diproses saat buka'; }
+  }
   $('meja').textContent = 'Meja ' + MEJA;
-  $('foot').textContent = info.footer || 'Terima kasih telah berkunjung';
-  // Kategori
+  $('foot').innerHTML = (info.footer || 'Terima kasih telah berkunjung') + '<br><br><b style="color:var(--m)">MenuKu</b> · Menu Digital QR Code';
   const cats = ['Semua', ...new Set(DATA.menu.map(m => m.kategori || 'Makanan'))];
-  $('cats').innerHTML = cats.map(c => `<button class="chip ${c === curCat ? 'on' : ''}" onclick="setCat('${E(c).replace(/'/g,"\\'")}')">${E(c)}</button>`).join('');
+  const icoMap = { 'Semua': '🍴', 'Makanan': '🍽', 'Minuman': '🥤', 'Pembuka': '🥗', 'Penutup': '🍰', 'Snack': '🍟', 'Paket': '🍱' };
+  $('cats').innerHTML = cats.map(c => `<button class="chip ${c === curCat ? 'on' : ''}" onclick="setCat(${JSON.stringify(c).replace(/"/g,'&quot;')})"><span class="ico">${icoMap[c] || '🍴'}</span>${E(c)}</button>`).join('');
   renderMenu();
 }
 
-function setCat(c) { curCat = c; document.querySelectorAll('#cats .chip').forEach(b => b.classList.toggle('on', b.textContent === c)); renderMenu(); }
+function setCat(c) { curCat = c; document.querySelectorAll('#cats .chip').forEach(b => b.classList.toggle('on', b.textContent.trim() === c.trim())); renderMenu(); }
 
 function renderMenu() {
-  const list = DATA.menu.filter(m => curCat === 'Semua' || (m.kategori || 'Makanan') === curCat);
-  // Group by kategori
+  const q = ($('q').value || '').toLowerCase();
+  const list = DATA.menu.filter(m => (curCat === 'Semua' || (m.kategori || 'Makanan') === curCat) && (m.nama + ' ' + (m.deskripsi || '') + ' ' + m.kategori).toLowerCase().includes(q));
   const groups = {}; list.forEach(m => { const k = m.kategori || 'Makanan'; (groups[k] = groups[k] || []).push(m); });
   let html = '';
-  Object.keys(groups).sort().forEach(k => {
-    html += `<div class="sec-ttl">${E(k)}</div>`;
-    html += groups[k].map(m => {
-      const q = cart[m.id] || 0, habis = m.status === 'habis';
-      return `<div class="mi ${habis ? 'z' : ''}">
-        <div class="ph">${m.foto ? `<img src="${E(m.foto)}" alt="${E(m.nama)}" loading="lazy">` : '🍽'}</div>
-        <div class="bd">
-          <div class="nm">${E(m.nama)} ${habis ? '<span class="st-badge" style="background:#fde8e8;color:var(--er)">Habis</span>' : ''}</div>
-          ${m.deskripsi ? `<div class="ds">${E(m.deskripsi)}</div>` : ''}
-          <div class="pr">${R(m.harga)}</div>
-          ${habis ? '' : `<div class="add">
-            ${q > 0 ? `<button class="g" onclick="chg('${m.id}',-1)">−</button><span class="qty">${q}</span><button class="g" onclick="chg('${m.id}',1)">+</button>` : `<button class="b" style="padding:8px 16px;font-size:13px" onclick="chg('${m.id}',1)">+ Tambah</button>`}
-          </div>`}
-        </div>
-      </div>`;
-    }).join('');
-  });
-  $('menu-list').innerHTML = html || '<div class="empty"><div class="ico">📭</div><p>Menu kategori ini belum tersedia.</p></div>';
+  if (!list.length) {
+    html = `<div class="empty"><div class="ico">${q ? '🔍' : '📭'}</div><p>${q ? 'Tidak ada menu yang cocok dengan pencarian "' + E(q) + '"' : 'Menu kategori ini belum tersedia.'}</p></div>`;
+  } else {
+    Object.keys(groups).sort().forEach(k => {
+      html += `<div class="sec-ttl">${E(k)} <small>${groups[k].length} menu</small></div>`;
+      html += groups[k].map(m => {
+        const qty = cart[m.id] || 0, habis = m.status === 'habis';
+        const ph = m.foto ? `<img src="${E(m.foto)}" alt="${E(m.nama)}" loading="lazy">` : `<span class="emo">${catEmoji(m.kategori)}</span>`;
+        return `<div class="mi ${habis ? 'z' : ''}">
+          <div class="ph">${ph}</div>
+          <div class="bd">
+            <div class="nm">${E(m.nama)} ${habis ? '<span class="st-badge">Habis</span>' : ''}</div>
+            ${m.deskripsi ? `<div class="ds">${E(m.deskripsi)}</div>` : '<div class="ds" style="visibility:hidden">.</div>'}
+            <div class="foot">
+              <div class="pr"><small>Rp</small>${(+m.harga).toLocaleString('id-ID')}</div>
+              <div class="add">
+                ${habis ? '' : qty > 0
+                  ? `<button class="mi-btn min" onclick="chg('${m.id}',-1)">−</button><span class="qty">${qty}</span><button class="mi-btn pls" onclick="chg('${m.id}',1)">+</button>`
+                  : `<button class="mi-btn add" onclick="chg('${m.id}',1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Tambah</button>`}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    });
+  }
+  $('menu-list').innerHTML = html;
+}
+
+function catEmoji(k) {
+  const m = { 'Makanan': '🍽', 'Minuman': '🥤', 'Pembuka': '🥗', 'Penutup': '🍰', 'Snack': '🍟', 'Paket': '🍱' };
+  return m[k] || '🍴';
 }
 
 function chg(id, d) {
@@ -215,67 +380,119 @@ function chg(id, d) {
   n === 0 ? delete cart[id] : cart[id] = n;
   renderMenu(); cartBar();
 }
+
 function cartBar() {
   const ids = Object.keys(cart);
   const tot = ids.reduce((a, id) => { const m = DATA.menu.find(x => x.id === id); return a + (m ? m.harga * cart[id] : 0); }, 0);
   const cnt = ids.reduce((a, id) => a + cart[id], 0);
-  if (cnt > 0) { $('cart-bar').hidden = 0; $('cart-bar').classList.add('show'); $('cb-n').textContent = cnt + ' item'; $('cb-t').textContent = R(tot); }
-  else { $('cart-bar').classList.remove('show'); setTimeout(() => { if (!Object.keys(cart).length) $('cart-bar').hidden = 1; }, 250); }
+  if (cnt > 0) {
+    $('cart-bar').hidden = 0;
+    requestAnimationFrame(() => $('cart-bar').classList.add('show'));
+    $('cb-n').textContent = cnt;
+    $('cb-t').textContent = R(tot);
+  } else {
+    $('cart-bar').classList.remove('show');
+    setTimeout(() => { if (!Object.keys(cart).length) $('cart-bar').hidden = 1; }, 300);
+  }
 }
+
+document.getElementById('cart-bar').addEventListener('click', openCart);
 
 function openCart() {
   const ids = Object.keys(cart);
   if (!ids.length) return toast('Keranjang masih kosong', 1);
   $('cart-items').innerHTML = ids.map(id => {
     const m = DATA.menu.find(x => x.id === id), q = cart[id];
-    return `<div class="ci"><div class="nm"><div>${E(m.nama)}</div><div class="ds">${R(m.harga)} × ${q}</div></div>
-    <div class="qbtn"><button onclick="chg('${id}',-1);openCart()">−</button><span class="q">${q}</span><button onclick="chg('${id}',1);openCart()">+</button></div>
-    <div class="sub">${R(m.harga * q)}</div></div>`;
+    const ph = m.foto ? `<img src="${E(m.foto)}" alt="">` : catEmoji(m.kategori);
+    return `<div class="ci">
+      <div class="ph-mini">${ph}</div>
+      <div class="nm">
+        <div class="ttl">${E(m.nama)}</div>
+        <div class="pr-mini">${R(m.harga)} / item</div>
+        <div class="qbtn">
+          <button class="min" onclick="chg('${id}',-1);openCart()">−</button>
+          <span class="q">${q}</span>
+          <button class="pls" onclick="chg('${id}',1);openCart()">+</button>
+        </div>
+      </div>
+      <div class="sub">${R(m.harga * q)}</div>
+    </div>`;
   }).join('');
   const info = DATA.info || {};
   const sub = ids.reduce((a, id) => { const m = DATA.menu.find(x => x.id === id); return a + m.harga * cart[id]; }, 0);
   const pjk = Math.round(sub * (+info.pajak || 0) / 100);
   const svc = Math.round(sub * (+info.service || 0) / 100);
   const tot = sub + pjk + svc;
-  $('cart-sum').innerHTML = `<div style="background:var(--pt);border-radius:12px;padding:12px 14px">
-    <div class="r jb s m"><span>Subtotal</span><span>${R(sub)}</span></div>
-    ${pjk ? `<div class="r jb s m"><span>Pajak ${info.pajak}%</span><span>${R(pjk)}</span></div>` : ''}
-    ${svc ? `<div class="r jb s m"><span>Service ${info.service}%</span><span>${R(svc)}</span></div>` : ''}
-    <div class="r jb" style="margin-top:6px;font-size:18px"><b>Total</b><b style="color:var(--or)">${R(tot)}</b></div>
+  let sumHtml = `<div class="sum">
+    <div class="sum-row"><span>Subtotal</span><span>${R(sub)}</span></div>
+    ${pjk ? `<div class="sum-row"><span>Pajak (${info.pajak || 0}%)</span><span>${R(pjk)}</span></div>` : ''}
+    ${svc ? `<div class="sum-row"><span>Biaya layanan (${info.service || 0}%)</span><span>${R(svc)}</span></div>` : ''}
+    <div class="sum-row total"><span>Total</span><span class="val">${R(tot)}</span></div>
   </div>
-  <p class="s m" style="margin-top:8px;text-align:center">Pembayaran di kasir (tunai/QRIS). Pesanan dikirim ke dapur sekarang.</p>`;
+  <div class="sum-note">💵 Pembayaran di kasir (tunai / QRIS). Pesanan langsung dikirim ke dapur.</div>`;
+  $('cart-sum').innerHTML = sumHtml;
   $('shc').classList.add('o');
 }
-function cs() { document.querySelectorAll('.sh').forEach(x => x.classList.remove('o')); }
+
+function cs() { document.querySelectorAll('.sheet').forEach(x => x.classList.remove('o')); }
 
 async function kirim() {
   const ids = Object.keys(cart); if (!ids.length) return;
   const items = ids.map(id => ({ id, qty: cart[id] }));
   const pel = $('catPel').value.trim();
-  $('shc').classList.remove('o');
-  toast('Mengirim pesanan…');
+  const btn = $('kirimBtn'); btn.disabled = 1; btn.textContent = 'Mengirim…';
   try {
     const j = await api('order', { t: TOK, m: MEJA, items, pel });
     cart = {}; lastOrd = j.id; renderMenu(); cartBar();
+    $('catPel').value = '';
+    cs();
     showStatus(j.id, 'BARU', j.total);
-    toast('Pesanan terkirim! Meja ' + MEJA);
-  } catch (e) { toast(e.message, 1); }
+    toast('Pesanan terkirim ke dapur!');
+  } catch (e) {
+    toast(e.message, 1);
+    btn.disabled = 0; btn.textContent = 'Kirim pesanan ke dapur';
+  }
 }
 
 async function cekStatus() {
   if (!lastOrd) return;
   try {
     const j = await api('orderStatus', { t: TOK, m: MEJA });
-    if (j.id && j.status) { lastOrd = j.id; showStatus(j.id, j.status, j.total, true); }
+    if (j.id && j.status && j.status !== lastStatus) {
+      lastStatus = j.status;
+      showStatus(j.id, j.status, j.total, j.status !== 'BARU');
+    }
   } catch (e) {}
 }
-const ST_L = { BARU: { l: 'Pesanan diterima', c: 'new', ico: '📝', desc: 'Pesanan Anda sudah sampai ke dapur. Mohon tunggu sebentar.' }, DIPROSES: { l: 'Sedang diproses', c: 'proc', ico: '👨‍🍳', desc: 'Dapur sedang menyiapkan pesanan Anda.' }, SELESAI: { l: 'Pesanan siap', c: 'done', ico: '✅', desc: 'Pesanan Anda sudah siap. Silakan panggil kasir untuk pembayaran.' }, BATAL: { l: 'Dibatalkan', c: 'new', ico: '❌', desc: 'Pesanan dibatalkan. Hubungi kasir bila perlu.' } };
-function showStatus(id, status, total, silent) {
+
+const ST_L = {
+  BARU: { l: 'Pesanan diterima', c: 'new', ico: '📝', desc: 'Pesanan Anda sudah sampai ke dapur. Mohon tunggu sebentar.' },
+  DIPROSES: { l: 'Sedang diproses', c: 'proc', ico: '👨‍🍳', desc: 'Dapur sedang menyiapkan pesanan Anda dengan penuh cinta.' },
+  SELESAI: { l: 'Pesanan siap', c: 'done', ico: '✅', desc: 'Pesanan Anda sudah siap! Silakan nikmati.' },
+  BATAL: { l: 'Dibatalkan', c: 'cancel', ico: '❌', desc: 'Pesanan dibatalkan. Hubungi kasir bila perlu.' }
+};
+const ST_ORDER = ['BARU', 'DIPROSES', 'SELESAI'];
+
+function showStatus(id, status, total, popup) {
   const s = ST_L[status] || ST_L.BARU;
   const card = $('status-card'); card.hidden = 0;
-  card.innerHTML = `<div class="r" style="gap:10px;align-items:flex-start"><div style="font-size:28px">${s.ico}</div><div style="flex:1"><div style="font-weight:700;font-size:16px">Status: <span class="st-badge ${s.c}">${s.l}</span></div><div class="s m" style="margin-top:4px">${s.desc}</div><div class="s m" style="margin-top:6px">No. pesanan: <b>${E(id)}</b>${total ? ' · Total ' + R(total) : ''}</div></div></div>`;
-  if (!silent && status !== 'BARU') {
-    $('status-content').innerHTML = `<div style="font-size:48px;margin-bottom:10px">${s.ico}</div><h2 style="font-size:20px;margin-bottom:6px">${s.l}</h2><p class="m" style="margin-bottom:10px">${s.desc}</p><p class="s m">No. pesanan: ${E(id)}</p>`;
+  const curIdx = ST_ORDER.indexOf(status);
+  const stepsHtml = ST_ORDER.map((k, i) => {
+    const cls = i < curIdx ? 'done' : (i === curIdx ? 'on' : '');
+    return `<div class="st-step ${cls}"></div>`;
+  }).join('');
+  card.innerHTML = `
+    <div class="st-progress">${stepsHtml}</div>
+    <div class="st-row">
+      <div class="st-ico">${s.ico}</div>
+      <div class="st-body">
+        <div class="lbl">Status: <span class="st-badge2 ${s.c}">${s.l}</span></div>
+        <div class="desc">${s.desc}</div>
+        <div class="meta">No. pesanan: <b>${E(id)}</b>${total ? ' · Total <b>' + R(total) + '</b>' : ''}</div>
+      </div>
+    </div>`;
+  if (popup) {
+    $('status-content').innerHTML = `<div style="font-size:64px;margin-bottom:10px">${s.ico}</div><h2 class="sheet-title">${s.l}</h2><p class="sheet-sub" style="margin-bottom:6px">${s.desc}</p><p class="meta" style="font-size:12px;color:var(--m)">No. pesanan: <b>${E(id)}</b></p>`;
     $('shs').classList.add('o');
   }
 }
