@@ -132,8 +132,7 @@ main{padding:14px;max-width:800px;margin:auto}
  * MenuKu — Halaman Pelanggan (menu.html)
  * URL: menu.html?t=TOKEN&m=NOMOR_MEJA
  * ============================================================ */
-const API = 'https://script.google.com/macros/s/AKfycbwHC6TDUtyKcpzJhTiFkPrIiaW9QP0-kKvLjZVp1_9IbzJM23HHjlOHBPLDBXLRSYw/exec
-'; // <-- Ganti dengan URL /exec Web App Apps Script Anda
+const API = 'https://script.google.com/macros/s/AKfycbz3yedhl9M8UheDo8C3aMqyNKr-piXrghBJURh2r5Ut8QyDvymGERmWG1yHU9NcBKg/exec'; // <-- Ganti dengan URL /exec Web App Apps Script Anda
 const $ = i => document.getElementById(i), R = n => 'Rp ' + Math.round(+n || 0).toLocaleString('id-ID');
 const E = s => String(s ?? '').replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
 const params = new URLSearchParams(location.search);
