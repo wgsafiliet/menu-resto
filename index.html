@@ -293,7 +293,7 @@ function rPesanan(){
   <div class="s m">${ago(t.tgl)} · ${E(String(t.tgl).slice(11,16))}</div><hr><ul>${its.map(i=>`<li><b>${i.qty}×</b><span>${E(i.nama)}${i.catatan?`<br><i class="s m">${E(i.catatan)}</i>`:''}</span></li>`).join('')}</ul><hr>
   ${c.pjk||c.svc?`<div class="s m">Subtotal ${R(c.sub)}${c.pjk?' · Pajak '+R(c.pjk):''}${c.svc?' · Service '+R(c.svc):''}</div>`:''}
   <div class="r jb"><b style="font-size:17px">${R(t.total)}</b><button class="g" onclick="prT('${t.id}')">Cetak</button></div>
-  ${t.no_pelanggan?`<div class="s m" style="margin-top:4px">Pelanggan: <a href="https://wa.me/62${E(String(t.no_pelanggan).replace(/\D/g,'').replace(/^0/,''))}" target="_blank" rel="noopener">${E(t.no_pelanggan)}</a></div>`:''}
+  ${t.no_pelanggan?`<div class="s m" style="margin-top:4px">Pelanggan: ${/^[\d\s+\-]{8,}$/.test(t.no_pelanggan)?`<a href="https://wa.me/62${E(String(t.no_pelanggan).replace(/\D/g,'').replace(/^62/,'').replace(/^0/,''))}" target="_blank" rel="noopener">${E(t.no_pelanggan)}</a>`:E(t.no_pelanggan)}</div>`:''}
   <div class="r w" style="margin-top:10px">${t.status==='BARU'?`<button class="b y" onclick="setSt2('${t.id}','DIPROSES')">Proses pesanan</button>`:''}${t.status==='DIPROSES'?`<button class="b" style="background:var(--ok)" onclick="setSt2('${t.id}','SELESAI')">Tandai selesai</button>`:''}${t.status==='BARU'||t.status==='DIPROSES'?`<button class="g er" onclick="setSt2('${t.id}','BATAL')">Batalkan</button>`:''}</div></div>`};
  const colsDef=S.ps==='AKTIF'?[['BARU','Baru'],['DIPROSES','Sedang diproses'],['SELESAI','Selesai hari ini']]:[[S.ps,'Hasil']];
  const today=new Date().toLocaleDateString('sv-SE');
